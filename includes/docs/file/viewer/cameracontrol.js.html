@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/cameracontrol.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/cameracontrol.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export const DRAG_ORBIT = 0xfe01;
+export const DRAG_PAN = 0xfe02;
+export const DRAG_SECTION = 0xfe03;
+
+/**
+ Controls the camera with user input.
+ */
+export class CameraControl {
+
+    constructor(viewer) {
+
+        this.viewer = viewer;
+
+        this.mousePanSensitivity = 0.5;
+        this.mouseOrbitSensitivity = 0.5;
+        this.canvasPickTolerance = 4;
+
+        this.canvas = viewer.canvas;
+        this.camera = viewer.camera;
+
+        this.mousePos = vec2.create();
+        this.mouseDownPos = vec2.create();
+        this.over = false; // True when mouse over canvas
+        this.lastX = 0; // Last canvas pos while dragging
+        this.lastY = 0;
+
+        this.mouseDown = false;
+        this.dragMode = DRAG_ORBIT;
+
+        this.canvas.oncontextmenu = (e) =&gt; {
+            e.preventDefault();
+        };
+
+        this.canvas.addEventListener(&quot;mousedown&quot;, this.canvasMouseDownHandler = (e) =&gt; {
+        	this.canvasMouseDown(e);
+        });
+
+        this.canvas.addEventListener(&quot;mouseup&quot;, this.canvasMouseUpHandler = (e) =&gt; {
+        	this.canvasMouseUp(e);
+        });
+
+        this.documentMouseUpHandler = (e) =&gt; {
+        	this.documentMouseUp(e);
+        };
+        document.addEventListener(&quot;mouseup&quot;, this.documentMouseUpHandler);
+
+        this.canvas.addEventListener(&quot;mouseenter&quot;, this.canvasMouseEnterHandler = (e) =&gt; {
+            this.over = true;
+            e.preventDefault();
+        });
+
+        this.canvas.addEventListener(&quot;mouseleave&quot;, this.canvasMouseLeaveHandler = (e) =&gt; {
+            this.over = false;
+            e.preventDefault();
+        });
+
+        this.canvas.addEventListener(&quot;mousemove&quot;, this.canvasMouseMoveHandler = (e) =&gt; {
+        	this.canvasMouseMove(e);
+        });
+
+        this.canvas.addEventListener(&quot;wheel&quot;, this.canvasMouseWheelHandler = (e) =&gt; {
+        	this.canvasWheel(e);
+        });
+    }
+
+    /**
+     * @private
+     */
+    getCanvasPosFromEvent(event, canvasPos) {
+        if (!event) {
+            event = window.event;
+            canvasPos[0] = event.x;
+            canvasPos[1] = event.y;
+        } else {
+            var element = event.target;
+            var totalOffsetLeft = 0;
+            var totalOffsetTop = 0;
+            while (element.offsetParent) {
+                totalOffsetLeft += element.offsetLeft;
+                totalOffsetTop += element.offsetTop;
+                element = element.offsetParent;
+            }
+            canvasPos[0] = event.pageX - totalOffsetLeft;
+            canvasPos[1] = event.pageY - totalOffsetTop;
+        }
+        return canvasPos;
+    }
+
+    /**
+     * @private
+     */
+    getZoomRate() {
+        var modelBounds = this.viewer.modelBounds;
+        if (modelBounds) {
+            var xsize = modelBounds[3] - modelBounds[0];
+            var ysize = modelBounds[4] - modelBounds[1];
+            var zsize = modelBounds[5] - modelBounds[2];
+            var max = (xsize &gt; ysize ? xsize : ysize);
+            max = (zsize &gt; max ? zsize : max);
+            return max / 20;
+        } else {
+            return 1;
+        }
+    }
+
+    /**
+     * @private
+     */
+    canvasMouseDown(e) {
+        this.getCanvasPosFromEvent(e, this.mousePos);
+
+        this.lastX = this.mousePos[0];
+        this.lastY = this.mousePos[1];
+
+        this.mouseDown = true;
+        this.mouseDownTime = e.timeStamp;
+        this.mouseDownPos.set(this.mousePos);
+
+        switch (e.which) {
+            case 1:                
+                if (e.ctrlKey) {
+                    this.mouseDownTime = 0;
+                    this.dragMode = DRAG_SECTION;
+                    this.viewer.startSectionPlane({canvasPos:[this.lastX, this.lastY]});                    
+                } else {
+                    this.dragMode = DRAG_ORBIT;
+                    let picked = this.viewer.pick({canvasPos:[this.lastX, this.lastY], select:false});
+                    if (picked &amp;&amp; picked.coordinates &amp;&amp; picked.object) {
+                        this.viewer.camera.center = picked.coordinates;
+                    } else {
+                        // Check if we can &apos;see&apos; the previous center. If not, pick
+                        // a new point.
+                        let center_vp = vec3.transformMat4(vec3.create(), this.viewer.camera.center, this.viewer.camera.viewProjMatrix);
+
+                        let isv = true;
+                        for (let i = 0; i &lt; 3; ++i) {
+                            if (center_vp[i] &lt; -1. || center_vp[i] &gt; 1.) {
+                                isv = false;
+                                break;
+                            }
+                        }
+
+                        if (!isv) {
+                            let [x,y] = this.mousePos;
+                            vec3.set(center_vp, x / this.viewer.width * 2 - 1, - y / this.viewer.height * 2 + 1, 1.);
+                            vec3.transformMat4(center_vp, center_vp, this.camera.viewProjMatrixInverted);
+                            vec3.subtract(center_vp, center_vp, this.camera.eye);
+                            vec3.normalize(center_vp, center_vp);
+                            vec3.scale(center_vp, center_vp, this.getZoomRate() * 10.);
+                            vec3.add(center_vp, center_vp, this.camera.eye);
+                            console.log(&quot;new center&quot;, center_vp);
+                            this.viewer.camera.center = center_vp;
+                        }
+                    }
+                }
+                break;
+            case 2:
+                this.dragMode = DRAG_PAN; 
+                break;
+            default:
+                break;
+        }
+        this.over = true;
+        e.preventDefault();
+    }
+
+    /**
+     * @private
+     */
+    canvasMouseUp(e) {
+        this.camera.orbitting = false;
+        this.viewer.overlay.update();
+        this.getCanvasPosFromEvent(e, this.mousePos);
+
+        let dt = e.timeStamp - this.mouseDownTime;
+        this.mouseDown = false;
+
+        switch (e.which) {
+            case 1:
+            	if (dt &lt; 500. &amp;&amp; this.closeEnoughCanvas(this.mouseDownPos, this.mousePos)) {
+                    var viewObject = this.viewer.pick({
+                        canvasPos: this.mousePos,
+                        shiftKey: e.shiftKey
+                    });
+                    if (viewObject &amp;&amp; viewObject.object) {
+                        console.log(&quot;Picked&quot;, viewObject.object);
+                    }
+                    this.viewer.drawScene();
+                }
+                break;
+        }
+        e.preventDefault();
+    }
+
+    /**
+     * @private
+     */
+    canvasWheel(e) {
+        this.getCanvasPosFromEvent(e, this.mousePos);
+        var delta = Math.max(-1, Math.min(1, -e.deltaY * 40));
+        if (delta === 0) {
+            return;
+        }
+        var d = delta / Math.abs(delta);
+        var zoom = -d * this.getZoomRate() * this.mousePanSensitivity;
+        this.camera.zoom(zoom, this.mousePos);
+        e.preventDefault();
+    }
+
+    /**
+     * @private
+     */
+    closeEnoughCanvas(p, q) {
+        return p[0] &gt;= (q[0] - this.canvasPickTolerance) &amp;&amp;
+            p[0] &lt;= (q[0] + this.canvasPickTolerance) &amp;&amp;
+            p[1] &gt;= (q[1] - this.canvasPickTolerance) &amp;&amp;
+            p[1] &lt;= (q[1] + this.canvasPickTolerance);
+    }
+
+    /**
+     * @private
+     */
+    canvasMouseMove(e) {
+        if (!this.over) {
+            return;
+        }
+        if (this.mouseDown) {
+        	this.getCanvasPosFromEvent(e, this.mousePos);
+            var x = this.mousePos[0];
+            var y = this.mousePos[1];
+            var xDelta = (x - this.lastX);
+            var yDelta = (y - this.lastY);
+            this.lastX = x;
+            this.lastY = y;
+            if (this.dragMode == DRAG_ORBIT) {
+                let f = 0.5;
+                if (xDelta !== 0) {
+                	this.camera.orbitYaw(-xDelta * this.mouseOrbitSensitivity * f);
+                }
+                if (yDelta !== 0) {
+                	this.camera.orbitPitch(yDelta * this.mouseOrbitSensitivity * f);
+                }
+                this.camera.orbitting = true;
+            } else if (this.dragMode == DRAG_PAN) {
+                var f = this.getEyeLookDist() / 600;
+                this.camera.pan([xDelta * f, yDelta * this.mousePanSensitivity * f, 0.0]);
+            }
+        }
+        e.preventDefault();
+    }
+
+    /**
+     * @private
+     */
+    documentMouseUp(e) {
+        this.mouseDown = false;
+    }
+
+    getEyeLookDist() {
+        var vec = vec3.create();
+        return vec3.length(vec3.subtract(vec, this.viewer.camera.target, this.viewer.camera.eye));
+    }
+
+    /**
+     * @private
+     */
+    cleanup() {
+        var canvas = this.canvas;
+    	document.removeEventListener(&quot;mouseup&quot;, this.documentMouseUpHandler);
+        canvas.removeEventListener(&quot;mousedown&quot;, this.canvasMouseDownHandler);
+        canvas.removeEventListener(&quot;mouseup&quot;, this.canvasMouseUpHandler);
+        document.removeEventListener(&quot;mouseup&quot;, this.documentMouseUpHandler);
+        canvas.removeEventListener(&quot;mouseenter&quot;, this.canvasMouseEnterHandler);
+        canvas.removeEventListener(&quot;mouseleave&quot;, this.canvasMouseLeaveHandler);
+        canvas.removeEventListener(&quot;mousemove&quot;, this.canvasMouseMoveHandler);
+        canvas.removeEventListener(&quot;wheel&quot;, this.canvasMouseWheelHandler);
+    }
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

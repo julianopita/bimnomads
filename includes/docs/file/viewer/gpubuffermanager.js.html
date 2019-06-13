@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/gpubuffermanager.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/gpubuffermanager.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Responsible for managing GPU buffers. There are 4 types of buffers:
+ * - Transparent batched
+ * - Opaque batched
+ * - Transparent reused
+ * - Opaque reused
+ *  
+ */
+export class GpuBufferManager {
+	constructor(viewer) {
+		this.viewer = viewer;
+		this.gl = this.viewer.gl;
+		this.settings = this.viewer.settings;
+		
+		this.liveBuffersTransparent = [];
+		this.liveBuffersOpaque = [];
+		this.liveReusedBuffersOpaque = [];
+		this.liveReusedBuffersTransparent = [];
+	}
+	
+	isEmpty() {
+		// This variable is required because of bug in Firefox
+		var isEmpty =
+			(this.liveBuffersOpaque == null || this.liveBuffersOpaque.length == 0) &amp;&amp; 
+			(this.liveBuffersTransparent == null || this.liveBuffersTransparent.length == 0) &amp;&amp;
+			(this.liveReusedBuffersOpaque == null || this.liveReusedBuffersOpaque.length == 0) &amp;&amp;
+			(this.liveReusedBuffersTransparent == null || this.liveReusedBuffersTransparent.length == 0);
+		return isEmpty;
+	}
+	
+	/* 
+	 * Get a buffer based on two booleans: transparency and reuse
+	 */
+	getBuffers(transparency, reuse) {
+		if (reuse) {
+			if (transparency) {
+				return this.liveReusedBuffersTransparent;
+			} else {
+				return this.liveReusedBuffersOpaque;
+			}
+		} else {
+			if (transparency) {
+				return this.liveBuffersTransparent;
+			} else {
+				return this.liveBuffersOpaque;
+			}
+		}
+	}
+	
+	pushBuffer(buffer) {
+		this.getBuffers(buffer.hasTransparency, buffer.reuse).push(buffer);
+	}
+
+	deleteBuffer(buffer) {
+		let arr = this.getBuffers(buffer.hasTransparency, buffer.reuse);
+		let idx = arr.indexOf(buffer);
+		if (idx === -1) {
+			throw &quot;Unable to find buffer to delete&quot;;
+		}
+		arr.splice(idx, 1);
+	}
+	
+	sortAllBuffers() {
+		this.sortBuffers(this.liveBuffersOpaque);
+		this.sortBuffers(this.liveBuffersTransparent);
+		this.sortBuffers(this.liveReusedBuffersOpaque);
+		this.sortBuffers(this.liveReusedBuffersTransparent);
+	}
+	
+	sortBuffers(buffers) {
+		buffers.sort((a, b) =&gt; {
+			for (var i=0; i&lt;4; i++) {
+				if (a.color[i] == b.color[i]) {
+					continue;
+				}
+				return a.color[i] - b.color[i];
+			}
+			// Colors are the same
+			return 0;
+		});
+	}
+	
+	/*
+	 * This method will combine buffers on the GPU. It&apos;s disabled for now, not that it doesn&apos;t work, but it seems to generate quite a bit of &quot;stuttering&quot;. Maybe we need to use a different type of buffer.
+	 */
+	combineBuffers() {
+		// TODO this is not working currently
+		
+		for (var transparency of [false, true]) {
+			var buffers = this.getBuffers(transparency, false);
+			
+			// This is only done when useObjectColors is false for now, probably because that&apos;s going to be the default anyways
+			
+			if (buffers.length &gt; 1 &amp;&amp; !this.viewer.settings.useObjectColors) {
+				console.log(&quot;Combining buffers&quot;, buffers.length);
+				
+				var nrPositions = 0;
+				var nrNormals = 0;
+				var nrIndices = 0;
+				var nrColors = 0;
+				
+				for (var buffer of buffers) {
+					nrPositions += buffer.nrPositions;
+					nrNormals += buffer.nrNormals;
+					nrIndices += buffer.nrIndices;
+					nrColors += buffer.nrColors;
+				}
+				
+				const positionBuffer = this.gl.createBuffer();
+				this.gl.bindBuffer(this.gl.COPY_WRITE_BUFFER, positionBuffer);
+				this.gl.bufferData(this.gl.COPY_WRITE_BUFFER, nrPositions * (this.settings.quantizeVertices ? 2 : 4) , this.gl.STATIC_DRAW);
+				
+				const normalBuffer = this.gl.createBuffer();
+				this.gl.bindBuffer(this.gl.COPY_WRITE_BUFFER, normalBuffer);
+				this.gl.bufferData(this.gl.COPY_WRITE_BUFFER, nrNormals * (this.settings.quantizeNormals ? 1 : 4), this.gl.STATIC_DRAW);
+
+				var colorBuffer = this.gl.createBuffer();
+				this.gl.bindBuffer(this.gl.COPY_WRITE_BUFFER, colorBuffer);
+				this.gl.bufferData(this.gl.COPY_WRITE_BUFFER, nrColors * (this.settings.quantizeColors ? 1 : 4), this.gl.STATIC_DRAW);
+				
+				const indexBuffer = this.gl.createBuffer();
+				this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+				this.gl.bufferData(this.gl.ELEMENT_ARRAY_BUFFER, nrIndices * 4, this.gl.STATIC_DRAW);
+
+				var positionsOffset = 0;
+				var normalsOffset = 0;
+				var indicesOffset = 0;
+				var colorsOffset = 0;
+
+				for (var buffer of buffers) {
+					this.gl.bindBuffer(this.gl.COPY_READ_BUFFER, buffer.positionBuffer);
+					this.gl.bindBuffer(this.gl.COPY_WRITE_BUFFER, positionBuffer);
+					this.gl.copyBufferSubData(this.gl.COPY_READ_BUFFER, this.gl.COPY_WRITE_BUFFER, 0, positionsOffset * (this.settings.quantizeVertices ? 2 : 4), buffer.nrPositions * (this.settings.quantizeVertices ? 2 : 4));
+					
+					this.gl.bindBuffer(this.gl.COPY_READ_BUFFER, buffer.normalBuffer);
+					this.gl.bindBuffer(this.gl.COPY_WRITE_BUFFER, normalBuffer);
+					this.gl.copyBufferSubData(this.gl.COPY_READ_BUFFER, this.gl.COPY_WRITE_BUFFER, 0, normalsOffset * (this.settings.quantizeNormals ? 1 : 4), buffer.nrNormals * (this.settings.quantizeNormals ? 1 : 4));
+
+					this.gl.bindBuffer(this.gl.COPY_READ_BUFFER, buffer.colorBuffer);
+					this.gl.bindBuffer(this.gl.COPY_WRITE_BUFFER, colorBuffer);
+					this.gl.copyBufferSubData(this.gl.COPY_READ_BUFFER, this.gl.COPY_WRITE_BUFFER, 0, colorsOffset * (this.settings.quantizeColors ? 1 : 4), buffer.nrColors * (this.settings.quantizeColors ? 1 : 4));
+
+					if (positionsOffset == 0) {
+						// Minor optimization for the first buffer
+						this.gl.bindBuffer(this.gl.COPY_READ_BUFFER, buffer.indexBuffer);
+						this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+						this.gl.copyBufferSubData(this.gl.COPY_READ_BUFFER, this.gl.ELEMENT_ARRAY_BUFFER, 0, 0, buffer.nrIndices * 4);
+					} else {
+						var startIndex = positionsOffset / 3;
+						
+						this.gl.bindBuffer(this.gl.COPY_READ_BUFFER, buffer.indexBuffer);
+						var tmpIndexBuffer = new Int32Array(buffer.nrIndices);
+						this.gl.getBufferSubData(this.gl.COPY_READ_BUFFER, 0, tmpIndexBuffer, 0, buffer.nrIndices);
+						
+						for (var i=0; i&lt;buffer.nrIndices; i++) {
+							tmpIndexBuffer[i] = tmpIndexBuffer[i] + startIndex;
+						}
+						
+						this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+						this.gl.bufferSubData(this.gl.ELEMENT_ARRAY_BUFFER, indicesOffset * 4, tmpIndexBuffer, 0, buffer.nrIndices);
+					}
+
+					this.gl.deleteBuffer(buffer.positionBuffer);
+					this.gl.deleteBuffer(buffer.normalBuffer);
+					this.gl.deleteBuffer(buffer.colorBuffer);
+					this.gl.deleteBuffer(buffer.indexBuffer);
+					
+					this.gl.deleteVertexArray(buffer.vao);
+					
+					positionsOffset += buffer.nrPositions;
+					normalsOffset += buffer.nrNormals;
+					indicesOffset += buffer.nrIndices;
+					colorsOffset += buffer.nrColors;
+				}
+				
+				var programInfo = this.viewer.programManager.getProgram({
+					picking: false,
+					instancing: false,
+					useObjectColors: this.settings.useObjectColors,
+					quantizeNormals: this.settings.quantizeNormals,
+					quantizeVertices: this.settings.quantizeVertices,
+					quantizeColors: this.settings.quantizeColors
+				});
+				
+				var vao = this.gl.createVertexArray();
+				this.gl.bindVertexArray(vao);
+
+				{
+					const numComponents = 3;
+					const normalize = false;
+					const stride = 0;
+					const offset = 0;
+					this.gl.bindBuffer(this.gl.ARRAY_BUFFER, positionBuffer);
+					if (this.settings.quantizeVertices) {
+						this.gl.vertexAttribIPointer(programInfo.attribLocations.vertexPosition, numComponents, this.gl.SHORT, normalize, stride, offset);
+					} else {
+						this.gl.vertexAttribPointer(programInfo.attribLocations.vertexPosition, numComponents, this.gl.FLOAT, normalize, stride, offset);
+					}
+					this.gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
+				}
+				{
+					const numComponents = 3;
+					const normalize = false;
+					const stride = 0;
+					const offset = 0;
+					this.gl.bindBuffer(this.gl.ARRAY_BUFFER, normalBuffer);
+					if (this.settings.quantizeNormals) {
+						this.gl.vertexAttribIPointer(programInfo.attribLocations.vertexNormal, numComponents, this.gl.BYTE, normalize, stride, offset);
+					} else {
+						this.gl.vertexAttribPointer(programInfo.attribLocations.vertexNormal, numComponents, this.gl.FLOAT, normalize, stride, offset);
+					}
+					this.gl.enableVertexAttribArray(programInfo.attribLocations.vertexNormal);
+				}
+				{
+					const numComponents = 4;
+					const normalize = false;
+					const stride = 0;
+					const offset = 0;
+					this.gl.bindBuffer(this.gl.ARRAY_BUFFER, colorBuffer);
+					if (this.settings.quantizeColors) {
+						this.gl.vertexAttribIPointer(programInfo.attribLocations.vertexColor, numComponents, this.gl.UNSIGNED_BYTE, normalize, stride, offset);
+					} else {
+						this.gl.vertexAttribPointer(programInfo.attribLocations.vertexColor, numComponents, this.gl.FLOAT, normalize, stride, offset);
+					}
+					this.gl.enableVertexAttribArray(programInfo.attribLocations.vertexColor);
+				}
+
+				this.gl.bindBuffer(this.gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+
+				this.gl.bindVertexArray(null);
+				
+				var newBuffer = {
+					positionBuffer: positionBuffer,
+					normalBuffer: normalBuffer,
+					indexBuffer: indexBuffer,
+					colorBuffer: colorBuffer,
+					nrIndices: indicesOffset,
+					nrPositions: positionsOffset,
+					nrNormals: normalsOffset,
+					nrColors: colorsOffset,
+					vao: vao,
+					hasTransparency: transparency,
+					reuse: false
+				};
+				
+				var previousLength = buffers.length;
+				buffers.length = 0;
+				buffers.push(newBuffer);
+				
+				return previousLength - 1;
+			}
+		}
+		return 0;
+	}
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

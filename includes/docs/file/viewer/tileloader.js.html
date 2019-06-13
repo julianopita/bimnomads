@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/tileloader.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/tileloader.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {Executor} from &apos;./executor.js&apos;
+import {Utils} from &apos;./utils.js&apos;
+import {GpuBufferManager} from &apos;./gpubuffermanager.js&apos;
+import {GeometryLoader} from &quot;./geometryloader.js&quot;
+
+/**
+ * Loads tiles. Needs to be initialized first (initialize method).
+ */
+export class TileLoader {
+	constructor(tilingRenderLayer, viewer, bimServerApi, densityThreshold, reuseLowerThreshold, geometryDataToReuse, roids, fieldsToInclude) {
+		this.tilingRenderLayer = tilingRenderLayer;
+		this.viewer = viewer;
+		this.settings = viewer.settings;
+		this.bimServerApi = bimServerApi;
+		this.densityThreshold = densityThreshold;
+		this.reuseLowerThreshold = reuseLowerThreshold;
+		this.geometryDataToReuse = Array.from(geometryDataToReuse);
+		this.roids = roids;
+		this.fieldsToInclude = fieldsToInclude;
+	
+		this.excludedTypes = [&quot;IfcSpace&quot;, &quot;IfcOpeningElement&quot;, &quot;IfcAnnotation&quot;];
+		this.executor = new Executor(64);
+		
+//		if (this.viewer.vertexQuantization) {
+//			this.quantizationMap = {};
+//			for (var roid of this.roids) {
+//				this.quantizationMap[roid] = this.viewer.vertexQuantization.getUntransformedVertexQuantizationMatrixForRoid(roid);
+//			}
+//		}
+		
+		this.loaderCounter = 0;
+	}
+	
+	/*
+	 * Initialize the tile loader. This needs to be called only once, and it&apos;s async, so make sure to use the returned Promise
+	 */
+	initialize() {
+		var promise = new Promise((resolve, reject) =&gt; {
+			this.bimServerApi.call(&quot;ServiceInterface&quot;, &quot;getTileCounts&quot;, {
+				roids: this.roids,
+				excludedTypes: this.excludedTypes,
+				geometryIdsToReuse: this.geometryDataToReuse,
+				minimumThreshold: this.densityThreshold,
+				maximumThreshold: -1,
+				depth: this.settings.maxOctreeDepth
+			}, (list) =&gt; {
+				for (var i=0; i&lt;list.length; i+=2) {
+					var tileId = list[i];
+					var nrObjects = list[i + 1];
+					if (nrObjects == 0) {
+						// Should not happen
+						debugger;
+						this.viewer.stats.inc(&quot;Tiling&quot;, &quot;Empty&quot;);
+						continue;
+					}
+					this.viewer.stats.inc(&quot;Tiling&quot;, &quot;Full&quot;);
+					var node = this.tilingRenderLayer.octree.getNodeById(tileId);
+					
+					node.loadingStatus = 0;
+					node.nrObjects = nrObjects;
+					node.stats = {
+						triangles: 0,
+						drawCallsPerFrame: 0
+					};
+				}
+				this.tilingRenderLayer.octree.prepareLevelLists();
+
+				resolve();
+			});
+		});
+		return promise;
+	}
+	
+	/*
+	 * Starts loading a specific tile
+	 */
+	loadTile(node, executor) {
+		if (!this.tilingRenderLayer.enabled) {
+			return;
+		}
+		if (node.loadingStatus != 0) {
+			return;
+		}
+		node.loadingStatus = 1;
+		if (executor == null) {
+			executor = this.executor;
+		}
+		if (node.nrObjects == 0) {
+			node.loadingStatus = 2;
+			// This happens for parent nodes that don&apos;t contain any objects, but have children that do have objects
+			return;
+		}
+		
+		node.gpuBufferManager = new GpuBufferManager(this.viewer);
+		
+		const loaderSettings = JSON.parse(JSON.stringify(this.settings.loaderSettings));
+		
+		loaderSettings.globalTransformation = Utils.toArray(this.viewer.globalTransformation);
+		
+		var query = {
+			type: {
+				name: &quot;IfcProduct&quot;,
+				includeAllSubTypes: true,
+				exclude: this.excludedTypes
+			},
+			tiles: {
+				ids: [node.id],
+				densityUpperThreshold: this.densityThreshold,
+				densityLowerThreshold: -1,
+				reuseLowerThreshold: this.reuseLowerThreshold,
+				geometryDataToReuse: this.geometryDataToReuse,
+				maxDepth: this.settings.maxOctreeDepth
+			},
+			include: {
+				type: &quot;IfcProduct&quot;,
+				field: &quot;geometry&quot;,
+				include: {
+					type: &quot;GeometryInfo&quot;,
+					field: &quot;data&quot;,
+					include: {
+						type: &quot;GeometryData&quot;,
+						fieldsDirect: this.fieldsToInclude
+					}
+				}
+			},
+			loaderSettings: loaderSettings
+		};
+		
+		if (this.tilingRenderLayer.viewer.vertexQuantization) {
+			query.loaderSettings.vertexQuantizationMatrix = this.tilingRenderLayer.viewer.vertexQuantization.vertexQuantizationMatrixWithGlobalTransformation;
+		}
+		var geometryLoader = new GeometryLoader(this.loaderCounter++, this.bimServerApi, this.tilingRenderLayer, this.roids, this.settings.loaderSettings, this.quantizationMap, this.viewer.stats, this.settings, query, this.tilingRenderLayer.reusedGeometryCache, node.gpuBufferManager);
+		
+		// We now use the total model bounds for the quantization since the prebuilt buffers already applied the transformation, thus no problems are expected for strange bounds
+		geometryLoader.unquantizationMatrix = this.tilingRenderLayer.viewer.vertexQuantization.inverseVertexQuantizationMatrixWithGlobalTransformation;
+		
+		this.tilingRenderLayer.registerLoader(geometryLoader.loaderId);
+		this.tilingRenderLayer.loaderToNode[geometryLoader.loaderId] = node;
+		geometryLoader.onStart = () =&gt; {
+			node.loadingStatus = 2;
+			this.viewer.stats.inc(&quot;Tiling&quot;, &quot;Loading&quot;);
+			this.viewer.dirty = true;
+		};
+		executor.add(geometryLoader).then(() =&gt; {
+			this.viewer.stats.dec(&quot;Tiling&quot;, &quot;Loading&quot;);
+			this.viewer.stats.inc(&quot;Tiling&quot;, &quot;Loaded&quot;);
+			if (node.gpuBufferManager.isEmpty() &amp;&amp; 
+					(node.bufferManager == null || node.bufferManager.bufferSets.size == 0)) {
+				node.loadingStatus = 5;
+			} else {
+				node.loadingStatus = 3;
+			}
+			this.tilingRenderLayer.done(geometryLoader.loaderId);
+		});
+	}
+	
+	geometryLoaderDone(geometryLoader) {
+		
+	}
+	
+	/*
+	 * Can for example be called} from the Console for debugging purposes
+	 * In real life you&apos;d never call this, since it kind of defeats the purpose of tiling
+	 */
+	loadAll(progressListener) {
+		var executor = new Executor(64);
+		executor.setProgressListener(progressListener);
+			
+			// TODO load per level, so first level 0, then 1 etc... These calls should be submitted to the executor only after the previous layer has been submitted
+			// Maybe we could load 2 levels at a time, to improve performance... So 0 and 1, as soon as 0 has loaded, start loading 2 etc...
+			
+			// Traversing breath-first so the big chucks are loaded first
+//			for (var l=0; l&lt;=this.octree.deepestLevel; l++) {
+//				
+//			}
+			
+		this.tilingRenderLayer.octree.traverseBreathFirst((node) =&gt; {
+			this.loadTile(node, executor);
+		});
+	
+		executor.awaitTermination().then(() =&gt; {
+			this.tilingRenderLayer.completelyDone();
+//			this.tilingRenderLayer.octree.prepareBreathFirst((node) =&gt; {
+//				return true;
+//			});
+			this.viewer.stats.requestUpdate();
+			document.getElementById(&quot;progress&quot;).style.display = &quot;none&quot;;
+		});	
+		return executor.awaitTermination();
+	}
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

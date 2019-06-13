@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/tilingrenderlayer.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/tilingrenderlayer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {RenderLayer} from &apos;./renderlayer.js&apos;
+import {Octree} from &apos;./octree.js&apos;
+import {Frustum} from &apos;./frustum.js&apos;
+import {LineBoxGeometry} from &apos;./lineboxgeometry.js&apos;
+import {BufferManagerTransparencyOnly} from &apos;./buffermanagertransparencyonly.js&apos;
+import {BufferManagerPerColor} from &apos;./buffermanagerpercolor.js&apos;
+import {Utils} from &apos;./utils.js&apos;
+import {TileLoader} from &apos;./tileloader.js&apos;
+import {ReuseLoader} from &apos;./reuseloader.js&apos;
+
+/**
+ * A specific type of RenderLayer, which uses Tiling to achieve better render performance, but also minimizes the amount of data that needs to be loaded of the line.
+ * 
+ */
+export class TilingRenderLayer extends RenderLayer {
+	constructor(viewer, geometryDataToReuse, bounds) {
+		super(viewer, geometryDataToReuse);
+
+		this.octree = new Octree(viewer, bounds, viewer.globalTransformation, viewer.settings.maxOctreeDepth);
+		this.lineBoxGeometry = new LineBoxGeometry(viewer, viewer.gl);
+
+		this.loaderToNode = {};
+
+		this.drawTileBorders = this.viewer.settings.realtimeSettings.drawTileBorders;
+
+		this._frustum = new Frustum();
+		
+		window.tilingRenderLayer = this;
+		
+		this.enabled = false;
+		
+		this.show = &quot;none&quot;;
+		this.initialLoad = &quot;none&quot;;
+	}
+	
+	showAll() {
+		this.show = &quot;all&quot;;
+		this.viewer.dirty = true;
+	}
+
+	load(bimServerApi, densityThreshold, roids, fieldsToInclude, progressListener) {
+		var reuseLowerThreshold = this.settings.loaderSettings.reuseThreshold;
+		if (!this.settings.loaderSettings.tilingLayerReuse) {
+			reuseLowerThreshold = -1;
+		}
+		this.tileLoader = new TileLoader(this, this.viewer, bimServerApi, densityThreshold, reuseLowerThreshold, this.geometryDataToReuse, roids, fieldsToInclude);
+		if (this.settings.loaderSettings.tilingLayerReuse) {
+			this.reuseLoader = new ReuseLoader(this.viewer, reuseLowerThreshold, bimServerApi, fieldsToInclude, roids, this.tileLoader.quantizationMap, this.geometryCache, this.geometryDataToReuse);
+		}
+
+		var promise = new Promise((resolve, reject) =&gt; {
+			var init = this.tileLoader.initialize().then(() =&gt; {
+				this.enabled = true;
+				// Ugly way of triggering an octree-visibility update
+				this.lastViewMatrix = null;
+				if (this.initialLoad == &quot;all&quot;) {
+					return this.tileLoader.loadAll(progressListener);
+				}
+				resolve();
+			});
+		});
+		return promise;
+	}
+
+	cull(node) {
+		// 1. Are we always showing all objects?
+		if (this.show == &quot;all&quot;) {
+			return false;
+		}
+
+		// 2. Is the complete Tile outside of the view frustum?
+		var isect = this._frustum.intersectsWorldAABB(node.normalizedBoundsVectors);
+
+		if (isect === Frustum.OUTSIDE_FRUSTUM) {
+			return true;
+		}
+		
+		// 3. In the tile too far away?
+		var cameraEye = this.viewer.camera.eye;
+		var tileCenter = node.normalizedCenter;
+		var sizeFactor = 1 / Math.pow(2, node.level);
+		var closestPotentialDistanceMm = Math.abs(vec3.distance(cameraEye, tileCenter) - node.radius);
+		
+//		console.log(closestPotentialDistanceMm);
+		
+		const vFOV = this.viewer.camera.perspective.fov * Math.PI / 180;
+		const pixelWidth = 2 * Math.tan(vFOV / 2) * Math.abs(closestPotentialDistanceMm);
+
+		if (node.gpuBufferManager != null) {
+			node.stats.trianglesDrawing = 0;
+			var totalTriangles = 0;
+			for (var transparent of [false, true]) {
+				var buffers = node.gpuBufferManager.getBuffers(transparent, false);
+				for (var buffer of buffers) {
+					buffer.nrTrianglesToDraw = Math.floor(Math.min(buffer.nrIndices, Math.floor(buffer.nrIndices * (200000 / closestPotentialDistanceMm))) / 3);
+					totalTriangles += buffer.nrIndices / 3;
+					node.stats.trianglesDrawing += buffer.nrTrianglesToDraw;
+				}
+			}
+			for (var transparent of [false, true]) {
+				var buffers = node.gpuBufferManager.getBuffers(transparent, true);
+				for (var buffer of buffers) {
+					buffer.nrTrianglesToDraw = Math.floor(Math.min(buffer.nrIndices, Math.floor(buffer.nrIndices * (200000 / closestPotentialDistanceMm))) / 3);
+//					buffer.nrTrianglesToDraw = (buffer.nrIndices / 3) * buffer.numInstances;
+					totalTriangles += (buffer.nrIndices / 3) * buffer.numInstances;
+					node.stats.trianglesDrawing += buffer.nrTrianglesToDraw;
+				}
+			}
+			node.normalizedDistanceFactor = node.stats.trianglesDrawing / totalTriangles;
+			if (node.stats.trianglesDrawing == 0) {
+				return true;
+			}
+		} else {
+			if (closestPotentialDistanceMm &lt; 800000) {
+				return false;
+			} else {
+				node.normalizedDistanceFactor = 0;
+				if (node.stats != null) {
+					node.stats.trianglesDrawing = 0;
+				}
+				return true;
+			}
+		}
+		// Default response
+		return false;
+	}
+	
+	prepareRender() {
+		// This only needs to be recalculated if the camera has changed, so we keep track of the last view matrix
+		if (this.lastViewMatrix == null || this.octree.size != this.lastOctreeSize || !mat4.equals(this.lastViewMatrix, this.viewer.camera.viewMatrix)) {
+			this.lastViewMatrix = mat4.clone(this.viewer.camera.viewMatrix);
+
+			this._frustum.init(this.viewer.camera.viewMatrix, this.viewer.camera.projMatrix);
+
+			var renderingTiles = 0;
+			var renderingTriangles = 0;
+			var drawCalls = 0;
+			
+			this.octree.traverseBreathFirst((node) =&gt; {
+				if (node.parent != null &amp;&amp; node.parent.visibilityStatus == 0) {
+					node.visibilityStatus = 0;
+					return false;
+				}
+				if (this.cull(node)) {
+					node.visibilityStatus = 0;
+					return false;
+				} else {
+					node.visibilityStatus = 1;
+					if (node.loadingStatus == 0) {
+						this.tileLoader.loadTile(node);
+					} else {
+						if (node.stats != null) {
+							renderingTiles++;
+							renderingTriangles += (node.stats.trianglesDrawing ? node.stats.trianglesDrawing : 0);
+							drawCalls += node.stats.drawCallsPerFrame;
+						}
+					}
+				}
+			});
+			
+			this.viewer.stats.setParameter(&quot;Drawing&quot;, &quot;Draw calls per frame (L2)&quot;, drawCalls);
+			this.viewer.stats.setParameter(&quot;Drawing&quot;, &quot;Triangles to draw (L2)&quot;, renderingTriangles);
+			this.viewer.stats.setParameter(&quot;Tiling&quot;, &quot;Rendering&quot;, renderingTiles);
+		}
+	}
+	
+	renderBuffers(transparency, reuse, visibleElements) {
+		// TODO when navigation is active (rotating, panning etc...), this would be the place to decide to for example not-render anything in this layer, or maybe apply more aggressive culling
+		// if (this.viewer.navigationActive) {
+		// 	return;
+		// }
+		
+		// TODO would be nicer if this was passed as an integer argument, indicating the iteration count of this frame
+		let picking = visibleElements.pass === &apos;pick&apos;;
+
+		var programInfo = this.viewer.programManager.getProgram(this.viewer.programManager.createKey(reuse, picking));
+
+		this.gl.useProgram(programInfo.program);
+
+		if (!picking) {
+			// TODO find out whether it&apos;s possible to do this binding before the program is used (possibly just once per frame, and better yet, a different location in the code)
+			this.viewer.lighting.render(programInfo.uniformBlocks.LightData);
+			this.gl.uniformMatrix3fv(programInfo.uniformLocations.viewNormalMatrix, false, this.viewer.camera.viewNormalMatrix);
+		}
+
+		this.gl.uniformMatrix4fv(programInfo.uniformLocations.projectionMatrix, false, this.viewer.camera.projMatrix);
+		this.gl.uniformMatrix4fv(programInfo.uniformLocations.viewMatrix, false, this.viewer.camera.viewMatrix);
+		if (this.settings.quantizeVertices) {
+			this.gl.uniformMatrix4fv(programInfo.uniformLocations.vertexQuantizationMatrix, false, this.viewer.vertexQuantization.getTransformedInverseVertexQuantizationMatrix());
+		}
+
+		this.octree.traverse((node) =&gt; {
+			// TODO at the moment a list (of non-empty tiles) is used to do traverseBreathFirst, but since a big optimization is possible by automatically culling 
+			// child nodes of parent nodes that are culled, we might have to reconsider this and go back to tree-traversal, where returning false would indicate to 
+			// skip the remaining child nodes
+			
+			if (node.visibilityStatus == 1) {
+				if (node.gpuBufferManager == null) {
+					// Not initialized yet
+					return;
+				}
+				var buffers = node.gpuBufferManager.getBuffers(transparency, reuse);
+				this.renderFinalBuffers(buffers, programInfo, visibleElements);
+			} else {
+				return false;
+			}
+		});
+	}
+
+	renderTileBorders() {
+		if (this.drawTileBorders) {
+			// The lines are rendered in the transparency-phase only
+			this.lineBoxGeometry.renderStart(this.viewer);
+			this.octree.traverse((node, level) =&gt; {
+				var color = null;
+				if (node.loadingStatus == 0) {
+					// No visualisation, node is not empty (or parent node)
+				} else if (node.loadingStatus == 1) {
+					// Node is waiting to start loading
+					color = [1, 0, 0, 1];
+				} else if (node.loadingStatus == 2) {
+					// Node is loading
+				} else if (node.loadingStatus == 3) {
+					// Node is loaded
+					if (node.visibilityStatus == 0) {
+						color = [0, 1, 0, 1];
+					} else if (node.visibilityStatus == 1) {
+						if (node.normalizedDistanceFactor == 1) {
+							color = [0, 0, 0, 0];
+						} else {
+							color = [0, 0, 1, 1 - node.normalizedDistanceFactor];
+						}
+					}
+				} else if (node.loadingStatus == 4) {
+					// To be documented
+					color = [0.5, 0.5, 0.5, 1];
+				} else if (node.loadingStatus == 5) {
+					// Node has been tried to load, but no objects were returned
+				}
+				if (color != null) {
+					this.lineBoxGeometry.render(color, node.normalizedMatrix, 0.001);
+				}
+			});
+			this.lineBoxGeometry.renderStop();
+		}
+	}
+
+	addGeometry(loaderId, geometry, object) {
+		var sizes = {
+			vertices: geometry.positions.length,
+			normals: geometry.normals.length,
+			indices: geometry.indices.length,
+			colors: (geometry.colors != null ? geometry.colors.length : 0),
+			pickColors: geometry.positions.length
+		};
+
+		// TODO some of this is duplicate code, also in defaultrenderlayer.js
+		if (geometry.reused &gt; 1 &amp;&amp; this.geometryDataToReuse != null &amp;&amp; this.geometryDataToReuse.has(geometry.id)) {
+			geometry.matrices.push(object.matrix);
+			geometry.objects.push(object);
+
+			this.viewer.stats.inc(&quot;Drawing&quot;, &quot;Triangles to draw&quot;, geometry.indices.length / 3);
+
+			return;
+		}
+
+		var node = this.loaderToNode[loaderId];
+		
+		if (node.bufferManager == null) {
+			if (this.settings.useObjectColors) {
+				node.bufferManager = new BufferManagerPerColor(this.viewer, this.viewer.settings, this, this.viewer.bufferSetPool);
+			} else {
+				node.bufferManager = new BufferManagerTransparencyOnly(this.viewer, this.viewer.settings, this, this.viewer.bufferSetPool);
+			}
+		}
+		var buffer = node.bufferManager.getBufferSet(geometry.hasTransparency, geometry.color, sizes);
+		buffer.node = node;
+		
+		super.addGeometry(loaderId, geometry, object, buffer, sizes);
+	}
+	
+	dump() {
+		console.log(this.tileLoader.executor);
+	}
+
+	createObject(loaderId, roid, oid, objectId, geometryIds, matrix, normalMatrix, scaleMatrix, hasTransparency, type, aabb) {
+		var loader = this.getLoader(loaderId);
+		var node = this.loaderToNode[loaderId];
+		return super.createObject(loaderId, roid, oid, objectId, geometryIds, matrix, normalMatrix, scaleMatrix, hasTransparency, type, aabb, node.gpuBufferManager, node);
+	}
+
+	addGeometryReusable(geometry, loader, gpuBufferManager) {
+		super.addGeometryReusable(geometry, loader, gpuBufferManager);
+		var node = this.loaderToNode[loader.loaderId];
+		node.stats.triangles += ((geometry.indices.length / 3) * (geometry.matrices.length));
+		node.stats.drawCallsPerFrame++;
+		
+		this.viewer.stats.inc(&quot;Drawing&quot;, &quot;Draw calls per frame (L2)&quot;);
+	}
+
+	done(loaderId) {
+		var loader = this.getLoader(loaderId);
+		var node = this.loaderToNode[loaderId];
+		
+		// When a new tile has been loaded and the viewer is not moving, we need to force an update of the culling of the node
+		if (this.cull(node)) {
+			node.visibilityStatus = 0;
+		} else {
+			node.visibilityStatus = 1;
+		}
+		
+		for (var geometry of loader.geometries.values()) {
+			if (geometry.isReused) {
+				this.addGeometryReusable(geometry, loader, node.gpuBufferManager);
+			}
+		}
+		
+		var bufferManager = node.bufferManager;
+		if (bufferManager != null) {
+			for (var buffer of bufferManager.getAllBuffers()) {
+				this.flushBuffer(buffer);
+			}
+			bufferManager.clear();
+			node.bufferManager = null;
+		}
+
+		for (var object of loader.objects.values()) {
+			object.add = null;
+		}
+
+		if (this.settings.autoCombineGpuBuffers) {
+			var savedBuffers = node.gpuBufferManager.combineBuffers();
+			this.viewer.stats.dec(&quot;Drawing&quot;, &quot;Draw calls per frame (L2)&quot;, savedBuffers);
+			this.viewer.stats.dec(&quot;Buffers&quot;, &quot;Buffer groups&quot;, savedBuffers);
+			node.stats.drawCallsPerFrame -= savedBuffers;
+		}
+
+		this.viewer.dirty = true;
+		
+		this.removeLoader(loaderId);
+	}
+
+	flushAllBuffers() {
+		this.octree.traverse((node) =&gt; {
+			var bufferManager = node.bufferManager;
+			if (bufferManager != null) {
+				for (var buffer of bufferManager.getAllBuffers()) {
+					this.flushBuffer(buffer);
+				}
+				if (this.settings.useObjectColors) {
+					// When using object colors, it makes sense to sort the buffers by color, so we can potentially skip a few uniform binds
+					// It might be beneficiary to do this sorting on-the-lfy and not just when everything is loaded
+
+					// TODO disabled for now since we are testing combining buffer, which makes this obsolete
+//					this.sortBuffers(node.liveBuffers);
+				}
+			}
+		}, false);
+	}
+
+	renderSelectionOutlines(ids, width) {
+		for (var oid of ids) {
+			// TODO this is already much more efficient than iterating over all octree nodes, but can be made more efficient for large selections by first 
+			// organizing the oid&apos;s per node
+			var viewObject = this.viewer.getViewObject(oid);
+			super.renderSelectionOutlines(ids, width, viewObject.node);
+		}
+	}
+	
+	addCompleteBuffer(buffer, gpuBufferManager) {
+		var newBuffer = super.addCompleteBuffer(buffer, gpuBufferManager);
+		
+		var node = this.loaderToNode[buffer.loaderId];
+		node.stats.triangles += buffer.nrIndices / 3;
+		node.stats.drawCallsPerFrame++;
+		
+		return newBuffer;
+	}
+	
+	flushBuffer(buffer) {
+		var node = buffer.node;
+		let gpuBuffer = super.flushBuffer(buffer, node.gpuBufferManager);
+
+		if (gpuBuffer == null) {
+			debugger;
+		}
+		gpuBuffer.node = node;
+
+		node.stats.triangles += buffer.nrIndices / 3;
+		node.stats.drawCallsPerFrame++;
+
+		if (node.bufferManager) {
+			node.bufferManager.resetBuffer(buffer);
+		}
+		this.viewer.dirty = true;
+
+		return gpuBuffer;
+	}
+
+	completelyDone() {
+		this.flushAllBuffers();
+		this.viewer.dirty = true;
+	}
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

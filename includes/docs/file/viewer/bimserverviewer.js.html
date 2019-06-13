@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/bimserverviewer.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/bimserverviewer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {Viewer} from &apos;./viewer.js&apos;
+import {DefaultRenderLayer} from &apos;./defaultrenderlayer.js&apos;
+import {TilingRenderLayer} from &apos;./tilingrenderlayer.js&apos;
+import {VertexQuantization} from &apos;./vertexquantization.js&apos;
+import {Executor} from &apos;./executor.js&apos;
+import {GeometryLoader} from &quot;./geometryloader.js&quot;
+import {Stats} from &quot;./stats.js&quot;
+import {DefaultSettings} from &quot;./defaultsettings.js&quot;
+import {Utils} from &quot;./utils.js&quot;
+
+/*
+ * The main class you instantiate when creating a viewer that will be loading data} from a BIMserver.
+ * This will eventually become a public API
+ */
+
+/**
+ * @ignore
+ */
+export class BimServerViewer {
+	constructor(bimServerApi, settings, canvas, width, height, stats) {
+		if (stats == null) {
+			stats = new Stats(false);
+		}
+		
+		// Necessary for settings
+		window.bimServerViewer = this;
+
+		this.canvas = canvas;
+
+		this.settings = settings;
+		this.bimServerApi = bimServerApi;
+		this.stats = stats;
+		this.width = width || canvas.offsetWidth;
+		this.height = height || canvas.offsetHeight;
+		this.layers = [];
+		
+		this.settings = DefaultSettings.create(settings);
+
+		this.viewer = new Viewer(canvas, settings, stats, this.width, this.height);
+		
+		stats.setParameter(&quot;Renderer settings&quot;, &quot;Object colors&quot;, this.settings.useObjectColors);
+		stats.setParameter(&quot;Renderer settings&quot;, &quot;Small indices if possible&quot;, this.settings.useSmallIndicesIfPossible);
+		stats.setParameter(&quot;Renderer settings&quot;, &quot;Quantize normals&quot;, this.settings.quantizeNormals);
+		stats.setParameter(&quot;Renderer settings&quot;, &quot;Quantize vertices&quot;, this.settings.quantizeVertices);
+
+		stats.setParameter(&quot;Loader settings&quot;, &quot;Object colors&quot;, this.settings.loaderSettings.useObjectColors);
+		stats.setParameter(&quot;Loader settings&quot;, &quot;Quantize normals&quot;, this.settings.loaderSettings.quantizeNormals);
+		stats.setParameter(&quot;Loader settings&quot;, &quot;Quantize vertices&quot;, this.settings.loaderSettings.quantizeVertices);
+
+		// Autoresize automatically resizes the viewer to the full width/height of the screen
+		if (this.settings.autoResize) {
+			this.autoResizeCanvas();
+			this.resizeHandler = () =&gt; {
+				this.autoResizeCanvas();
+			};
+			window.addEventListener(&quot;resize&quot;, this.resizeHandler, false);
+		} else {
+			this.viewer.setDimensions(width, height);
+		}
+	}
+
+	autoResizeCanvas() {
+		this.canvas.width = window.innerWidth;
+		this.canvas.height = window.innerHeight;
+		this.viewer.setDimensions(this.canvas.width, this.canvas.height);
+	}
+
+	loadRevisionByRoid(roid) {
+		var promise = new Promise((resolve, reject) =&gt; {
+			this.loadingResolve = resolve;
+			this.totalStart = performance.now();
+			
+			this.viewer.init().then(() =&gt; {
+				this.bimServerApi.call(&quot;ServiceInterface&quot;, &quot;listBoundingBoxes&quot;, {
+					roids: [roid]
+				}, (bbs) =&gt; {
+					if (bbs.length &gt; 1) {
+						this.settings.regionSelector(bbs).then((bb) =&gt; {
+							this.genDensityThreshold(roid, bb);
+						});
+					} else {
+						this.genDensityThreshold(roid, bbs[0]);
+					}
+				});
+			});
+		});
+		return promise;
+	}
+	
+	loadRevision(revision) {
+		this.loadRevisionByRoid(revision.oid);
+	}
+	
+	/*
+	 * This will load a BIMserver project. The given argument must be a Project object that is returned by the BIMserver JavaScript API.
+	 * 
+	 * In later stages much more control will be given to the user, for now the stategy is:
+	 * - If this project has no subprojects, we will simply load the latest revision of the project (if available)
+	 * - If this project has subprojects, all latest revisions of all subprojects _that have no subprojects_ will be loaded
+	 * 
+	 * All objects will be loaded except IfcOpeningElement and IfcSpace (these exclusions for now are in the GeometryLoader)
+	 * 
+	 */
+	loadModel(project) {
+		return new Promise((resolve, reject) =&gt; {
+			this.totalStart = performance.now();
+
+			this.viewer.init().then(() =&gt; {
+				this.bimServerApi.call(&quot;ServiceInterface&quot;, &quot;listBoundingBoxes&quot;, {
+					roids: [project.lastRevisionId]
+				}, (bbs) =&gt; {
+					if (bbs.length &gt; 1) {
+						this.settings.regionSelector(bbs).then((bb) =&gt; {
+							this.genDensityThreshold(project.lastRevisionId, bb).then(resolve);
+						});
+					} else {
+						this.genDensityThreshold(project.lastRevisionId, bbs[0]).then(resolve);
+					}
+				});
+			});
+		});
+	}
+
+	genDensityThreshold(roid, bb) {
+		return new Promise((resolve, reject) =&gt; {
+			this.bimServerApi.call(&quot;ServiceInterface&quot;, &quot;getDensityThreshold&quot;, {
+				roid: roid,
+				nrTriangles: this.viewer.settings.triangleThresholdDefaultLayer,
+				excludedTypes: [&quot;IfcSpace&quot;, &quot;IfcOpeningElement&quot;, &quot;IfcAnnotation&quot;]
+			}, (densityAtThreshold) =&gt; {
+				this.densityAtThreshold = densityAtThreshold;
+				this.densityThreshold = densityAtThreshold.density;
+				var nrPrimitivesBelow = densityAtThreshold.trianglesBelow;
+				var nrPrimitivesAbove = densityAtThreshold.trianglesAbove;
+				
+				this.bimServerApi.call(&quot;ServiceInterface&quot;, &quot;getRevision&quot;, {
+					roid: roid
+				}, (revision) =&gt; {
+					this.internalLoadRevision(revision, nrPrimitivesBelow, nrPrimitivesAbove).then(resolve);
+				});
+			});
+		});
+	}
+	
+	/*
+	 * Private method
+	 */
+	internalLoadRevision(revision, nrPrimitivesBelow, nrPrimitivesAbove) {
+		return new Promise((resolve, reject) =&gt; {
+
+			this.revisionId = revision.oid;
+
+			this.viewer.stats.setParameter(&quot;Models&quot;, &quot;Models to load&quot;, 1);
+
+	//		console.log(&quot;Total triangles&quot;, nrPrimitivesBelow + nrPrimitivesAbove);
+			
+			var requests = [
+				[&quot;ServiceInterface&quot;, &quot;getTotalBounds&quot;, {
+					roids: [revision.oid]
+				}],
+				[&quot;ServiceInterface&quot;, &quot;getTotalUntransformedBounds&quot;, {
+					roids: [revision.oid]
+				}]
+			];
+			
+			if (this.settings.gpuReuse) {
+				requests.push([&quot;ServiceInterface&quot;, &quot;getGeometryDataToReuse&quot;, {
+					roids: [revision.oid],
+					excludedTypes: [&quot;IfcSpace&quot;, &quot;IfcOpeningElement&quot;, &quot;IfcAnnotation&quot;],
+					trianglesToSave: 0
+				}]);
+			}
+			
+			for (var croid of revision.concreteRevisions) {
+				requests.push([&quot;ServiceInterface&quot;, &quot;getModelBoundsUntransformedForConcreteRevision&quot;, {
+					croid: croid
+				}]);
+			}
+			for (var croid of revision.concreteRevisions) {
+				requests.push([&quot;ServiceInterface&quot;, &quot;getModelBoundsForConcreteRevision&quot;, {
+					croid: croid
+				}]);
+			}
+
+			this.bimServerApi.multiCall(requests, (responses) =&gt; {
+				var totalBounds = responses[0].result;
+				var totalBoundsUntransformed = responses[1].result;
+//				console.log(totalBounds, totalBoundsUntransformed);
+				if (this.settings.gpuReuse) {
+					this.geometryDataIdsToReuse = new Set(responses[2].result);
+				} else {
+					this.geometryDataIdsToReuse = new Set(); // TODO later make this null, nicer
+				}
+	//			console.log(&quot;Geometry Data IDs to reuse&quot;, this.geometryDataIdsToReuse);
+
+				var add = this.settings.gpuReuse ? 3 : 2;
+				var modelBoundsUntransformed = new Map();
+				for (var i=0; i&lt;(responses.length - add) / 2; i++) {
+					modelBoundsUntransformed.set(revision.concreteRevisions[i], responses[i + add].result);
+				}
+				var modelBoundsTransformed = new Map();
+				for (var i=0; i&lt;(responses.length - add) / 2; i++) {
+					modelBoundsTransformed.set(revision.concreteRevisions[i], responses[(responses.length - add) / 2 + i + add].result);
+				}
+				
+				var bounds = [
+					totalBounds.min.x,
+					totalBounds.min.y,
+					totalBounds.min.z,
+					totalBounds.max.x,
+					totalBounds.max.y,
+					totalBounds.max.z,
+				];
+				
+				// globalTransformation is a matrix that puts the complete model close to 0, 0, 0
+				this.viewer.globalTransformation = mat4.create();
+				const translation = vec3.fromValues(
+						-(bounds[0] + (bounds[3] - bounds[0]) / 2), 
+						-(bounds[1] + (bounds[4] - bounds[1]) / 2), 
+						-(bounds[2] + (bounds[5] - bounds[2]) / 2));
+				mat4.translate(this.viewer.globalTransformation, this.viewer.globalTransformation, translation);
+
+				if (this.settings.quantizeVertices || this.settings.loaderSettings.quantizeVertices) {
+					this.viewer.vertexQuantization = new VertexQuantization(this.settings);
+					for (var croid of modelBoundsUntransformed.keys()) {
+						this.viewer.vertexQuantization.generateUntransformedMatrices(croid, modelBoundsUntransformed.get(croid));
+					}
+					this.viewer.vertexQuantization.generateMatrices(totalBounds, totalBoundsUntransformed, this.viewer.globalTransformation);
+				}
+				
+				this.viewer.stats.inc(&quot;Primitives&quot;, &quot;Primitives to load (L1)&quot;, nrPrimitivesBelow);
+				this.viewer.stats.inc(&quot;Primitives&quot;, &quot;Primitives to load (L2)&quot;, nrPrimitivesAbove);
+
+				var min = vec3.fromValues(bounds[0], bounds[1], bounds[2]);
+				var max = vec3.fromValues(bounds[3], bounds[4], bounds[5]);
+				vec3.transformMat4(min, min, this.viewer.globalTransformation);
+				vec3.transformMat4(max, max, this.viewer.globalTransformation);
+				this.viewer.setModelBounds([min[0], min[1], min[2], max[0], max[1], max[2]]);
+				
+				// TODO This is very BIMserver specific, clutters the code, should move somewhere else (maybe GeometryLoader)
+				var fieldsToInclude = [&quot;indices&quot;];
+				fieldsToInclude.push(&quot;colorPack&quot;);
+				if (this.settings.loaderSettings.quantizeNormals) {
+					if (this.settings.loaderSettings.prepareBuffers) {
+						fieldsToInclude.push(&quot;normals&quot;);
+						fieldsToInclude.push(&quot;normalsQuantized&quot;);
+					} else {
+						fieldsToInclude.push(&quot;normalsQuantized&quot;);
+					}
+				} else {
+					fieldsToInclude.push(&quot;normals&quot;);
+				}
+				if (this.settings.loaderSettings.quantizeVertices) {
+					if (this.settings.loaderSettings.prepareBuffers) {
+						fieldsToInclude.push(&quot;vertices&quot;);
+						fieldsToInclude.push(&quot;verticesQuantized&quot;);
+					} else {
+						fieldsToInclude.push(&quot;verticesQuantized&quot;);
+					}
+				} else {
+					fieldsToInclude.push(&quot;vertices&quot;);
+				}
+				if (!this.settings.loaderSettings.useObjectColors) {
+					fieldsToInclude.push(&quot;colorsQuantized&quot;);
+				}
+				
+				var promise = Promise.resolve();
+				if (this.viewer.settings.defaultLayerEnabled &amp;&amp; nrPrimitivesBelow) {
+					var defaultRenderLayer = new DefaultRenderLayer(this.viewer, this.geometryDataIdsToReuse);
+					this.layers.push(defaultRenderLayer);
+					this.viewer.renderLayers.push(defaultRenderLayer);
+
+					defaultRenderLayer.setProgressListener((nrPrimitivesLoaded) =&gt; {
+						var percentage = 100 * nrPrimitivesLoaded / nrPrimitivesBelow;
+						this.updateProgress(percentage);
+					});
+
+					promise = this.loadDefaultLayer(defaultRenderLayer, revision, bounds, fieldsToInclude);
+				}
+
+				promise.then(() =&gt; {
+					this.viewer.dirty = true;
+					var tilingPromise = Promise.resolve();
+					if (this.viewer.settings.tilingLayerEnabled &amp;&amp; nrPrimitivesAbove &gt; 0) {
+						var tilingRenderLayer = new TilingRenderLayer(this.viewer, this.geometryDataIdsToReuse, bounds);
+						this.layers.push(tilingRenderLayer);
+						this.viewer.renderLayers.push(tilingRenderLayer);
+						
+						tilingPromise = this.loadTilingLayer(tilingRenderLayer, revision, bounds, fieldsToInclude);
+					}
+					tilingPromise.then(() =&gt; {
+						this.viewer.stats.setParameter(&quot;Loading time&quot;, &quot;Total&quot;, performance.now() - this.totalStart);
+						if (this.viewer.bufferSetPool != null) {
+							this.viewer.bufferSetPool.cleanup();
+						}
+						if (this.loadingResolve != null) {
+							this.loadingResolve();
+						}
+						this.viewer.dirty = true;
+
+						resolve();
+					});
+				});
+			});
+		});
+	}
+
+	findElement(globalId) {
+		this.bimServerApi.call(&quot;ServiceInterface&quot;, &quot;getOidByGuid&quot;, {
+			roid: this.revisionId,
+			guid: globalId
+		}, (oid) =&gt; {
+			// @todo: This does not work, leaving this for Ruben
+			var buffer, desc;
+			this.layers.forEach((layer, index) =&gt; {
+				if ((buffer = layer.geometryIdToBufferSet.get(oid))) {
+					if ((desc = buffer.geometryIdToIndex.get(oid))) {
+						console.log(buffer, desc);
+					}
+				}
+			});
+		});
+	}
+	
+	loadDefaultLayer(defaultRenderLayer, revision, totalBounds, fieldsToInclude) {
+//		document.getElementById(&quot;progress&quot;).style.display = &quot;block&quot;;
+
+		var startLayer1 = performance.now();
+
+		var start = performance.now();
+		var executor = new Executor(4);
+
+		const loaderSettings = JSON.parse(JSON.stringify(this.settings.loaderSettings)); // copy
+
+		loaderSettings.globalTransformation = Utils.toArray(this.viewer.globalTransformation);
+		
+		var query = {
+			type: {
+				name: &quot;IfcProduct&quot;,
+				includeAllSubTypes: true,
+				exclude: [&quot;IfcSpace&quot;, &quot;IfcOpeningElement&quot;, &quot;IfcAnnotation&quot;]
+			},
+			tiles: {
+				ids: [0],
+				densityLowerThreshold: this.densityThreshold,
+				densityUpperThreshold: -1,
+				reuseLowerThreshold: -1,
+				geometryDataToReuse: Array.from(this.geometryDataIdsToReuse),
+				maxDepth: 0
+			},
+			include: {
+				type: &quot;IfcProduct&quot;,
+				field: &quot;geometry&quot;,
+				include: {
+					type: &quot;GeometryInfo&quot;,
+					field: &quot;data&quot;,
+					include: {
+						type: &quot;GeometryData&quot;,
+						fieldsDirect: fieldsToInclude
+					}
+				}
+			},
+			loaderSettings: loaderSettings
+		};
+		
+		if (this.settings.loaderSettings.quantizeVertices) {
+			query.loaderSettings.vertexQuantizationMatrix = this.viewer.vertexQuantization.vertexQuantizationMatrixWithGlobalTransformation;
+		}
+		
+		var geometryLoader = new GeometryLoader(0, this.bimServerApi, defaultRenderLayer, [revision.oid], this.settings.loaderSettings, null, this.stats, this.settings, query, null, defaultRenderLayer.gpuBufferManager);
+		if (this.settings.loaderSettings.quantizeVertices) {
+			geometryLoader.unquantizationMatrix = this.viewer.vertexQuantization.inverseVertexQuantizationMatrixWithGlobalTransformation;
+		}
+		defaultRenderLayer.registerLoader(geometryLoader.loaderId);
+		executor.add(geometryLoader).then(() =&gt; {
+			defaultRenderLayer.done(geometryLoader.loaderId);
+			this.viewer.stats.inc(&quot;Models&quot;, &quot;Models loaded&quot;, 1);
+		});
+		
+		executor.awaitTermination().then(() =&gt; {
+			this.viewer.stats.setParameter(&quot;Loading time&quot;, &quot;Layer 1&quot;, performance.now() - start);
+			defaultRenderLayer.completelyDone();
+			this.viewer.stats.requestUpdate();
+			this.viewer.dirty = true;
+		});
+		return executor.awaitTermination();
+	}
+
+	loadTilingLayer(tilingLayer, revision, totalBounds, fieldsToInclude) {
+		var startLayer2 = performance.now();
+
+		var layer2Start = performance.now();
+		
+		var p = tilingLayer.load(this.bimServerApi, this.densityThreshold, [revision.oid], fieldsToInclude, (percentage) =&gt; {
+//			document.getElementById(&quot;progress&quot;).style.width = percentage + &quot;%&quot;;
+		});
+		this.viewer.dirty = true;
+		p.then(() =&gt; {
+			this.viewer.stats.setParameter(&quot;Loading time&quot;, &quot;Layer 2&quot;, performance.now() - layer2Start);
+			this.viewer.stats.setParameter(&quot;Loading time&quot;, &quot;Total&quot;, performance.now() - this.totalStart);
+//			document.getElementById(&quot;progress&quot;).style.display = &quot;none&quot;;
+
+			if (this.viewer.bufferSetPool != null) {
+				this.viewer.bufferSetPool.cleanup();
+			}
+
+//			tilingLayer.octree.traverse((node) =&gt; {
+//				if (node.liveBuffers.length &gt; 0) {
+//					console.log(node.getBounds(), node.liveBuffers.length);
+//				}
+//			}, true);
+		});
+		return p;
+	}
+	
+	cleanup() {
+		console.log(&quot;resize handler&quot;);
+		window.removeEventListener(&quot;resize&quot;, this.resizeHandler, false);
+		this.viewer.cleanup();
+	}
+	
+	updateProgress(percentage) {
+		if (this.progressListener) {
+			this.progressListener(percentage);
+		}
+	}
+	
+	setProgressListener(progressListener) {
+		this.progressListener = progressListener;
+	}
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

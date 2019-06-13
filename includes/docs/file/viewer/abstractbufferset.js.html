@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/abstractbufferset.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/abstractbufferset.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {FatLineRenderer} from &apos;./fatlinerenderer.js&apos;
+
+/**
+ * @ignore
+ */
+export class AbstractBufferSet {
+    
+    constructor(viewer) {
+    	this.viewer = viewer;
+        this.geometryIdToIndex = new Map();
+    }
+
+    joinConsecutiveRanges(ranges) {
+        while (true) {
+			var removed = false;
+			for (let i = 0; i &lt; ranges.length - 1; ++i) {
+				let a = ranges[i];
+				let b = ranges[i+1];
+				if (a[1] == b[0]) {
+					ranges.splice(i, 2, [a[0], b[1]]);
+					removed = true;
+				}
+			}
+			if (!removed) {
+				break;
+			}
+		}
+    }
+
+    complementRanges(ranges) {
+        // @todo: horribly inefficient, do not try this at home.
+        var complement =  [[0, this.nrIndices]];
+        ranges.forEach((range)=&gt;{
+            let [a, b] = range;
+            const break_out_foreach = {};
+            try {
+                complement.forEach((originalRange, i)=&gt;{
+                    let [o, p] = originalRange;
+                    if (a &gt;= o &amp;&amp; a &lt;= p) {
+                        if (o == a) {
+                            complement[i][0] = b;
+                        } else {
+                            complement.splice(i, 1, [o, a], [b, p]);
+                        }							
+                        throw break_out_foreach;
+                    }
+                });
+            } catch (e) {
+                if (e !== break_out_foreach) {
+                    throw e;
+                }
+            }
+        });
+
+        return complement;
+    }
+
+    createLineRenderer(gl, a, b) {
+        const lineRenderer = new FatLineRenderer(this.viewer, gl, {
+            quantize: this.positionBuffer.js_type !== Float32Array.name
+        });
+
+        const positions = new window[this.positionBuffer.js_type](this.positionBuffer.N);
+        const indices = new window[this.indexBuffer.js_type](b-a);
+        
+        // @todo: get only part of positions [min(indices), max(indices)]
+        var restoreArrayBinding = gl.getParameter(gl.ARRAY_BUFFER_BINDING);
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
+        gl.getBufferSubData(gl.ARRAY_BUFFER, 0, positions);
+        
+        var restoreElementBinding = gl.getParameter(gl.ELEMENT_ARRAY_BUFFER_BINDING);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+        gl.getBufferSubData(gl.ELEMENT_ARRAY_BUFFER, a * 4, indices, 0, indices.length);
+        
+        const s = new Set();
+        
+        for (let i = 0; i &lt; indices.length; i += 3) {
+            let abc = indices.subarray(i, i + 3);
+
+            for (let j = 0; j &lt; 3; ++j) {
+                let ab = [abc[j], abc[(j+1)%3]];
+                ab.sort();
+                let abs = ab.join(&quot;:&quot;);
+
+                if (s.has(abs)) {
+                    s.delete(abs);
+                } else {
+                    s.add(abs);
+                }
+            }
+        }
+        
+        for (let e of s) {
+            let [a,b] = e.split(&quot;:&quot;);
+            let A = positions.subarray(a * 3).subarray(0,3);
+            let B = positions.subarray(b * 3).subarray(0,3);
+            lineRenderer.pushVertices(A, B);
+        }			
+
+        lineRenderer.finalize();            
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, restoreArrayBinding);
+        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, restoreElementBinding);
+
+        return lineRenderer;
+    }
+
+    computeVisibleInstances(ids_with_or_without, gl) {
+        var ids = Object.values(ids_with_or_without)[0];
+        var exclude = &quot;without&quot; in ids_with_or_without;
+        
+		var ids_str = exclude + &apos;:&apos; +  ids.frozen;
+
+        {
+            var cache_lookup;
+            if ((cache_lookup = this.visibleRanges.get(ids_str))) {
+                return cache_lookup;
+            }
+        }
+
+        let ranges = {instanceIds: [], hidden: exclude, somethingVisible: null};
+        this.objects.forEach((ob, i) =&gt; {
+            if (ids !== null &amp;&amp; ids.has(ob.id)) {
+                // @todo, for large lists of objects, this is not efficient
+                ranges.instanceIds.push(i);
+            }
+        });
+
+        if (ranges.instanceIds.length == this.objects.length) {
+            ranges.instanceIds = [];
+            ranges.hidden = !ranges.hidden;
+        }
+
+        ranges.somethingVisible = ranges.hidden
+            ? ranges.instanceIds.length &lt; this.objects.length
+            : ranges.instanceIds.length &gt; 0;
+
+        this.visibleRanges.set(ids_str, ranges);
+
+        if (!exclude &amp;&amp; ranges.instanceIds.length &amp;&amp; this.lineIndexBuffers.size === 0) {
+            let lineRenderer = this.createLineRenderer(gl, 0, this.indexBuffer.N);
+            // This will result in a different dequantization matrix later on, not sure why
+            lineRenderer.croid = this.croid;
+            this.objects.forEach((ob) =&gt; {
+                lineRenderer.matrixMap.set(ob.id, ob.matrix);
+                this.lineIndexBuffers.set(ob.id, lineRenderer);
+            });
+        }
+
+        return ranges;
+    }
+    
+    computeVisibleRanges(ids_with_or_without, gl) {
+		var ids = Object.values(ids_with_or_without)[0];
+		var exclude = &quot;without&quot; in ids_with_or_without;
+
+		const ids_str = exclude + &apos;:&apos; +  ids.frozen;
+
+        {
+            var cache_lookup;
+            if ((cache_lookup = this.visibleRanges.get(ids_str))) {
+                return cache_lookup;
+            }
+        }
+
+        if (ids === null || ids.size === 0) {
+            return [[0, this.nrIndices]];
+        }
+
+        // generator function that yields ranges in this buffer for the selected ids
+        function* _(geometryIdToIndex) {
+            var oids;
+            for (var i of ids) {
+                if ((oids = geometryIdToIndex.get(i))) {
+                    for (var j = 0; j &lt; oids.length; ++j) {
+                        yield [i, [oids[j].start, oids[j].start + oids[j].length]];
+                    }
+                }
+            }
+        };
+
+        const id_ranges = this.geometryIdToIndex
+            ? Array.from(_(this.geometryIdToIndex)).sort((a, b) =&gt; (a[1][0] &gt; b[1][0]) - (a[1][0] &lt; b[1][0]))
+            // If we don&apos;t have this mapping, we&apos;re dealing with a dedicated
+            // non-instanced bufferset for one particular overriden object
+            : [[this.objectId &amp; 0x8FFFFFFF, [0, this.nrIndices]]];
+		const ranges = id_ranges.map((arr) =&gt; {return arr[1];});
+
+		this.joinConsecutiveRanges(ranges);
+
+		if (exclude) {
+            let complement = this.complementRanges(ranges);
+			// store in cache
+			this.visibleRanges.set(ids_str, complement);
+			return complement;
+		}		
+
+        // store in cache
+        this.visibleRanges.set(ids_str, ranges);
+
+        // Create fat line renderings for these elements. This should (a) 
+        // not in the draw loop (b) maybe in something like a web worker
+        id_ranges.forEach((range, i) =&gt; {
+            let [id, [a, b]] = range;
+            if (this.lineIndexBuffers.has(id)) {
+                return;
+            }
+			let lineRenderer = this.createLineRenderer(gl, a, b);
+            this.lineIndexBuffers.set(id, lineRenderer);
+        });
+       
+        return ranges;
+	}
+	
+	reset() {
+		this.positionsIndex = 0;
+		this.normalsIndex = 0;
+		this.pickColorsIndex = 0;
+		this.indicesIndex = 0;
+		this.nrIndices = 0;
+		this.bytes = 0;
+		this.visibleRanges = new Map();
+		this.geometryIdToIndex = new Map();
+		this.lineIndexBuffers = new Map();
+	}
+
+	copy(gl, objectId) {
+        let returnDictionary = {};
+
+        if (this.objects) {
+            return this.copyEmpty();
+        } else {
+            let idx = this.geometryIdToIndex.get(objectId)[0];
+            let [offset, length] = [idx.start, idx.length];
+
+            const indices = new Uint32Array(length);
+
+            var restoreElementBinding = gl.getParameter(gl.ELEMENT_ARRAY_BUFFER_BINDING);
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+            gl.getBufferSubData(gl.ELEMENT_ARRAY_BUFFER, offset * 4, indices, 0, indices.length);
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, restoreElementBinding);
+
+            let [minIndex, maxIndex] = [Math.min.apply(null, indices), Math.max.apply(null, indices)];
+            let numVertices = maxIndex - minIndex + 1;
+
+            let toCopy = [&quot;positionBuffer&quot;, &quot;normalBuffer&quot;, &quot;colorBuffer&quot;, &quot;pickColorBuffer&quot;];
+            
+            toCopy.forEach((name) =&gt; {
+                let buffer = this[name];
+                let bytes_per_elem = window[buffer.js_type].BYTES_PER_ELEMENT;
+                let gpu_data = new window[buffer.js_type](numVertices * buffer.components);
+
+                var restoreArrayBinding = gl.getParameter(gl.ARRAY_BUFFER_BINDING);
+                gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+                gl.getBufferSubData(gl.ARRAY_BUFFER, minIndex * bytes_per_elem * buffer.components, gpu_data, 0, gpu_data.length);
+                gl.bindBuffer(gl.ARRAY_BUFFER, restoreArrayBinding);
+
+                let shortName = name.replace(&quot;Buffer&quot;, &quot;&quot;) + &quot;s&quot;;
+                returnDictionary[shortName] = gpu_data;
+                returnDictionary[&quot;nr&quot; + shortName.substr(0,1).toUpperCase() + shortName.substr(1)] = gpu_data.length;
+            });
+
+            for (let i = 0; i &lt; indices.length; ++i) {
+                indices[i] -= minIndex;
+            }
+
+            returnDictionary[&quot;indices&quot;] = indices;
+            returnDictionary[&quot;nrIndices&quot;] = indices.length;
+            
+        }
+
+		return returnDictionary;
+	}
+
+	setColor(gl, objectId, clr) {
+        // Reusing buffer sets always results in a copy
+        if (this.objects) {
+            return false;
+        }
+
+        // Switching transparency states results in a copy
+		if (clr.length == 4 &amp;&amp; this.hasTransparency != (clr[3] &lt; 1.)) {
+			return false;
+		}
+
+		var oldColors, newColors, clrArray;
+
+		if (clr.length == 4) {
+			let factor = this.colorBuffer.js_type == Uint8Array.name ? 255. : 1.;
+			clrArray = new window[this.colorBuffer.js_type](4);
+			for (let i = 0; i &lt; 4; ++i) {
+				clrArray[i] = clr[i] * factor;
+			}
+		} else {
+			newColors = clr;
+		}
+
+		this.geometryIdToIndex.get(objectId).forEach((idx) =&gt; {
+			let [offet, length] = [idx.color, idx.colorLength];
+			let bytes_per_elem = window[this.colorBuffer.js_type].BYTES_PER_ELEMENT;
+			
+			// Assumes there is just one index pair, this is for now always the case.
+			oldColors = new window[this.colorBuffer.js_type](length);
+
+			if (clr.length == 4) {
+				newColors = new window[this.colorBuffer.js_type](length);
+				for (let i = 0; i &lt; length; i += 4) {
+					newColors.set(clrArray, i);
+				}
+			}
+
+			var restoreArrayBinding = gl.getParameter(gl.ARRAY_BUFFER_BINDING);
+			gl.bindBuffer(gl.ARRAY_BUFFER, this.colorBuffer);
+			gl.getBufferSubData(gl.ARRAY_BUFFER, offet * bytes_per_elem, oldColors, 0, length);
+			gl.bufferSubData(gl.ARRAY_BUFFER, offet * bytes_per_elem, newColors, 0, length);
+			gl.bindBuffer(gl.ARRAY_BUFFER, restoreArrayBinding);
+		});
+
+		return oldColors;
+	}
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

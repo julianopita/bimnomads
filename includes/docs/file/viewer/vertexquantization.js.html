@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">viewer/vertexquantization.js | bimsurfer3</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="BIMsurferV3"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="bimsurfer3"><meta property="twitter:description" content="BIMsurferV3"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/TNOBIM/BIMSurfer"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/bimsurfer.js~BimSurfer.html">BimSurfer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanager.js~BufferManager.html">BufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagerpercolor.js~BufferManagerPerColor.html">BufferManagerPerColor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffermanagertransparencyonly.js~BufferManagerTransparencyOnly.html">BufferManagerTransparencyOnly</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffersetpool.js~BufferSetPool.html">BufferSetPool</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/buffertransformer.js~BufferTransformer.html">BufferTransformer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/camera.js~Camera.html">Camera</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/cameracontrol.js~CameraControl.html">CameraControl</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/datainputstream.js~DataInputStream.html">DataInputStream</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/defaultrenderlayer.js~DefaultRenderLayer.html">DefaultRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/executor.js~Executor.html">Executor</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/fatlinerenderer.js~FatLineRenderer.html">FatLineRenderer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/freezableset.js~FreezableSet.html">FreezableSet</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/frustum.js~Frustum.html">Frustum</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometrycache.js~GeometryCache.html">GeometryCache</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/geometryloader.js~GeometryLoader.html">GeometryLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/gpubuffermanager.js~GpuBufferManager.html">GpuBufferManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lighting.js~Lighting.html">Lighting</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/lineboxgeometry.js~LineBoxGeometry.html">LineBoxGeometry</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~Octree.html">Octree</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/octree.js~OctreeNode.html">OctreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/orthographic.js~Orthographic.html">Orthographic</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/perspective.js~Perspective.html">Perspective</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/programmanager.js~ProgramManager.html">ProgramManager</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/projecttreemodel.js~ProjectTreeModel.html">ProjectTreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/renderlayer.js~RenderLayer.html">RenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/reuseloader.js~ReuseLoader.html">ReuseLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/settings.js~Settings.html">Settings</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/ssquad.js~SSQuad.html">SSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/stats.js~Stats.html">Stats</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/svgoverlay.js~SvgOverlay.html">SvgOverlay</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tileloader.js~TileLoader.html">TileLoader</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/tilingrenderlayer.js~TilingRenderLayer.html">TilingRenderLayer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeModel.html">TreeModel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treemodel.js~TreeNode.html">TreeNode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/treeview.js~TreeView.html">TreeView</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/utils.js~Utils.html">Utils</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/vertexquantization.js~VertexQuantization.html">VertexQuantization</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/viewer.js~Viewer.html">Viewer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/viewer/wsquad.js~WSQuad.html">WSQuad</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_ORBIT">DRAG_ORBIT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_PAN">DRAG_PAN</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DRAG_SECTION">DRAG_SECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-DefaultColors">DefaultColors</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_QUANTIZATION">COLOR_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LINE_PRIMITIVES">LINE_PRIMITIVES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NORMAL_QUANTIZATION">NORMAL_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-OBJECT_COLORS">OBJECT_COLORS</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-PICKING">PICKING</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-REUSE">REUSE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-VERTEX_QUANTIZATION">VERTEX_QUANTIZATION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_ALPHA_DEPTH">COLOR_ALPHA_DEPTH</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-COLOR_FLOAT_DEPTH_NORMAL">COLOR_FLOAT_DEPTH_NORMAL</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">viewer/vertexquantization.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import {Utils} from &apos;./utils.js&apos;
+
+/**
+ * This class is responsible for keeping track of the various matrices used for quantization/unquantization
+ * 
+ * croid stands for: ConcreteRevision Object Identifier, it&apos;s a BIMserver object, you can see it as a unique identifier that identifies a revision.
+ */
+export class VertexQuantization {
+	constructor(settings) {
+		this.settings = settings;
+		
+		// croid -&gt; untransformed quantization matrices (1 per model)
+		this.untransformedQuantizationMatrices = new Map();
+
+		// croid -&gt; untransformed inverse quantization matrices (1 per model)
+		this.untransformedInverseQuantizationMatrices = new Map();
+	}
+
+	getUntransformedInverseVertexQuantizationMatrixForCroid(croid) {
+		var matrix = this.untransformedInverseQuantizationMatrices.get(croid);
+		if (matrix == null) {
+			throw &quot;Not found for croid &quot; + croid;
+		}
+		return matrix;
+	}
+	
+	getUntransformedVertexQuantizationMatrixForCroid(croid) {
+		var matrix = this.untransformedQuantizationMatrices.get(croid);
+		if (matrix == null) {
+			throw &quot;Not found: &quot; + roid;
+		}
+		return matrix;
+	}
+	
+	getTransformedVertexQuantizationMatrix() {
+		if (this.vertexQuantizationMatrix == null) {
+			throw &quot;Not found: vertexQuantizationMatrix&quot;;
+		}
+		return this.vertexQuantizationMatrix;
+	}
+
+	getUntransformedVertexQuantizationMatrix() {
+		if (this.untransformedVertexQuantizationMatrix == null) {
+			throw &quot;Not found: untransformedVertexQuantizationMatrix&quot;;
+		}
+		return this.vertexQuantizationMatrix;
+	}
+
+	getTransformedInverseVertexQuantizationMatrix() {
+		if (this.inverseVertexQuantizationMatrix == null) {
+			throw &quot;Not found: inverseVertexQuantizationMatrix&quot;;
+		}
+		return this.inverseVertexQuantizationMatrix;
+	}
+	
+	generateUntransformedMatrices(croid, boundsUntransformed) {
+		var matrix = mat4.create();
+		var scale = 32768;
+		
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		mat4.scale(matrix, matrix, vec3.fromValues(
+				scale / (boundsUntransformed.max.x - boundsUntransformed.min.x),
+				scale / (boundsUntransformed.max.y - boundsUntransformed.min.y),
+				scale / (boundsUntransformed.max.z - boundsUntransformed.min.z)
+		));
+
+		// Move the model with its center to the origin
+		mat4.translate(matrix, matrix, vec3.fromValues(
+				-(boundsUntransformed.max.x + boundsUntransformed.min.x) / 2,
+				-(boundsUntransformed.max.y + boundsUntransformed.min.y) / 2,
+				-(boundsUntransformed.max.z + boundsUntransformed.min.z) / 2
+		));
+		
+		// Store the untransformed quantization matrix
+		this.untransformedQuantizationMatrices.set(croid, Utils.toArray(matrix));
+		
+		var inverse = mat4.create();
+		mat4.invert(inverse, matrix);
+		
+		// Store the untransformed inverse quantization matrix
+		this.untransformedInverseQuantizationMatrices.set(croid, Utils.toArray(inverse));
+	}
+	
+	getTransformedQuantizationMatrix(boundsUntransformed) {
+		var matrix = mat4.create();
+		var scale = 32768;
+		
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		mat4.scale(matrix, matrix, vec3.fromValues(
+			scale / boundsUntransformed[3],
+			scale / boundsUntransformed[4],
+			scale / boundsUntransformed[5]
+		));
+		
+		// Move the model with its center to the origin
+		mat4.translate(matrix, matrix, vec3.fromValues(
+			-(boundsUntransformed[3] / 2 + boundsUntransformed[0]),
+			-(boundsUntransformed[4] / 2 + boundsUntransformed[1]),
+			-(boundsUntransformed[5] / 2 + boundsUntransformed[2])
+		));
+
+		return matrix;
+	}
+	
+	getTransformedInverseQuantizationMatrix(boundsUntransformed) {
+		var matrix = this.getTransformedQuantizationMatrix(boundsUntransformed);
+		var inverse = mat4.create();
+		mat4.invert(inverse, matrix);
+		
+		return inverse;
+	}
+	
+	generateMatrix(bounds, globalTransformation) {
+		var matrix = mat4.create();
+		var scale = 32768;
+		
+		var min = vec3.fromValues(bounds.min.x, bounds.min.y, bounds.min.z);
+		var max = vec3.fromValues(bounds.max.x, bounds.max.y, bounds.max.z);
+		
+		vec3.transformMat4(min, min, globalTransformation);
+		vec3.transformMat4(max, max, globalTransformation);
+		
+		// Scale the model to make sure all values fit within a 2-byte signed short
+		mat4.scale(matrix, matrix, vec3.fromValues(
+				scale / (max[0] - min[0]),
+				scale / (max[1] - min[1]),
+				scale / (max[2] - min[2])
+		));
+
+		// Move the model with its center to the origin
+		mat4.translate(matrix, matrix, vec3.fromValues(
+				-(max[0] + min[0]) / 2,
+				-(max[1] + min[1]) / 2,
+				-(max[2] + min[2]) / 2
+		));
+
+		return matrix;
+	}
+	
+	generateMatrices(totalBounds, totalBoundsUntransformed, globalTransformation) {
+		var matrix = this.generateMatrix(totalBounds, mat4.create());
+		var matrixWithGlobalTransformation = this.generateMatrix(totalBounds, globalTransformation);
+		
+		this.vertexQuantizationMatrix = Utils.toArray(matrix);
+		this.vertexQuantizationMatrixWithGlobalTransformation = Utils.toArray(matrixWithGlobalTransformation);
+
+		var inverse = mat4.create();
+		mat4.invert(inverse, matrix);
+		this.inverseVertexQuantizationMatrix = Utils.toArray(inverse);
+
+		var inverse = mat4.create();
+		mat4.invert(inverse, matrixWithGlobalTransformation);
+		this.inverseVertexQuantizationMatrixWithGlobalTransformation = Utils.toArray(inverse);
+
+		var matrix = this.generateMatrix(totalBoundsUntransformed, mat4.create());
+		this.untransformedVertexQuantizationMatrix = Utils.toArray(matrix);
+	}
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

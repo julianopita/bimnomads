@@ -5,17 +5,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
   $user = $_POST['user_name'];
   $password = $_POST['password'];
   $email = $_POST['email'];
-  $occupation = $_POST['occupation'];
+  $relacao = $_POST['relation'];
   $cpf = $_POST['cpf'];
   $cep = $_POST['cep'];
   	$bool = true;
   $link = mysql_connect("localhost","platnomads","@bimserver");
 	if ($link === false){
-	die("Não foi possível concetar ao servidor.". mysql_error()); //Connect to server
+	die("Não foi possível conectar-se ao servidor.". mysql_error()); //Connect to server
 	}
 
-  mysql_select_db("platnomads") or die("Não foi possível conectar à base de dados"); //Connect to database
-  $query = mysql_query("SELECT * FROM users"); //Query the users table
+  mysql_select_db("platnomads") or die("Não foi possível conectar-se à base de dados"); //Connect to database
+  $query = mysql_query("SELECT * FROM users_apae"); //Query the users table
   while($row = mysql_fetch_array($query)) //display all rows from query
   {
     $table_users = $row['user_name']; // the first username row is passed on to $table_users, and so on until the query is finished
@@ -44,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
    
 if($bool) // checks if bool is true
 {
-$sql = mysql_query( "INSERT INTO users (user_name, password, email, occupation, cpf, cep) VALUES ('$user','$password','$email','$occupation','$cpf','$cep')"); 
+$sql = mysql_query( "INSERT INTO users_apae (user_name, password, email, relacao, cpf, cep) VALUES ('$user','$password','$email','$relacao','$cpf','$cep')"); 
 //or die (mysql_error());
 echo "<pre>Debug: $sql</pre>\m";
 $result = mysqli_query($link, $sql);

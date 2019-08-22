@@ -5,7 +5,7 @@
   $password = $_REQUEST['password'];
   mysql_connect("localhost","platnomads","@bimserver") or die(mysql_error()); //Connect to server
   mysql_select_db("platnomads") or die("Não foi possível se conectar à base de dados"); //Connect to database
-  $query = mysql_query("SELECT * FROM users WHERE user_name='$user' OR email='$user'"); //Query the users table if there are matching rows equal to $username
+  $query = mysql_query("SELECT * FROM users_apae WHERE user_name='$user' OR email='$user'"); //Query the users table if there are matching rows equal to $username
   $exists = mysql_num_rows($query); //Checks if username exists
   $table_email = "";
   $table_user = "";
@@ -17,12 +17,17 @@
       $table_user = $row['user_name']; // the first username row is passed on to $table_users, and so on until the query is finished
       $table_email = $row['email']; // the first email row is passed on to $table_users, and so on until the query is finished
       $table_password = $row['password']; // the first password row is passed on to $table_users, and so on until the query is finished
+
     }
     if(($user == $table_user or $user == $table_email) && ($password == $table_password)) // checks if there are any matching fields
     {
         if($password == $table_password)
         {
-          $_SESSION['loggedin'] = $user; //set the logged in flag to true. This serves as a global variable
+          $_SESSION['loggedin'] = $user;//set the logged in flag to true. This serves as a global variable
+          $query = mysql_query("SELECT relacao FROM users_apae WHERE user_name='$user' OR email='$user'");
+          while($row = mysql_fetch_assoc($query)) //display all rows from query
+           {$_SESSION['relation'] = $row['relacao'];
+         }
           header("location: ../project.php"); // redirects the user to the authenticated home page
         }
 

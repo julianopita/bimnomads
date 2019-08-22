@@ -1,0 +1,2 @@
+<?php include "./forum/random_name_generator.php" ?>
+<div class="header-div-left"><a href="http://www.nomads.usp.br/pc/people.php"><img src="images/logo pc.png" style="height: 48px" align="left" alt="peles contemporâneas"></a></div>

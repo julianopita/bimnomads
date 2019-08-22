@@ -3,15 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Cronograma</title>
-<!-- Gerador de usuário randômico
-	<?php //include "./forum/random_name_generator.php" ?>-->
+<!-- Gerador de usuário randômico-->
+	<?php include "./forum/random_name_generator.php" ?>
 <link href="style.css" rel="stylesheet" type="text/css" />
-
-<?php include 'ganalytics.php' ?>
-<?php include 'forum/webgl_test.php' ?>
 	
 <meta name="description" content="Platnomads" />
-	
+	<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="manifest" href="images/manifest.json">
+<meta name="msapplication-TileColor" content="#ff0000">
+<meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+<meta name="theme-color" content="#ff0000">
+
 </head>
 <body leftmargin="50px" topmargin="50px" marginwidth="50px" marginheight="50px">
 
@@ -34,8 +48,10 @@ for (loopMes = 0; loopMes<=11; loopMes++) {
 
 //----------------------- AGENDA -----------------------//
         //-------------------PUXAR DO BANCO DE DADOS
-evento[7][21] = "Início da exposição <strong>peles contemporâneas</strong> no IAU-USP<br><br>9:00 apresentação da pesquisa de iniciação científica - sala de vídeo 1";
- evento[7][29] = "Final da exposição";
+evento[0][1] = "Hoje é dia 1. O mês está começando!";
+evento[0][2] = "Olá. Hoje é dia 2. O mês começou ontem!";
+evento[0][3] = "Eu gosto do dia 3!";
+evento[0][28] = "O mês está acabando. Hoje é dia 28!";
 
 function calendario() {
     //-----------------------PUXAR DE OPÇÕES DADAS AO USUÁRIO
@@ -123,48 +139,39 @@ window.onload = calendario;
     </script>
 
 <!--cabeçalho-->
-
-<div class="header-div3">
-	<?php include 'header_logo.php' ?>
+<div class="header-div4">
   <div class="header-icons-left"><a href="infoproject.php"><img src="images/view-tags.png" width="50" align="left"/></a></div>
 	  <div class="header-icons-left"><img src="images/calendar-100x100.png"  width="50" align="left"/></div>
-	<div class="header-icons-text"><br>calendário de participação</div>
- <div class="header-icons-right"> <a href="gallery1.php"><img src="images/circulo s.png"  width="48"  align="right" /></a></div>
-   	<div class="header-icons-right"> <a href="gallery2.php"><img src="images/circulo e.png"  width="48"  align="right" /></a></div>
- <div class="header-icons-right"> <a href="maps.php"><img src="images/view-locations.png"  width="50"  align="right" /></a></div>
+	<div class="header-icons-center"><p><br><br>calendário de participação</p></div>
+ <div class="header-icons-right"> <a href="gallery.php"><img src="images/view-images-48x48.png"  width="50"  align="right" /></a></div>
  <div class="header-icons-right"><a href="versions.php"><img src="images/versoes.PNG"  width="50"  align="right" /></a></div>
     </div>
 
  <!--conteúdo--> 
 <div class="middle-div-sobreprojeto">
-<div class="arrow-right" title="voltar para informações do projeto" style="margin-top:100px; margin-right: 10px">
+<div class="arrow-right" style="margin-top:100px; margin-right: 10px">
 <a href="infoproject.php"><img src="images/arrow_left.png" align="left"/></a>
 </div>
 <div class="cronograma-left">
 	
-       <div id="calendarioEventos">
-         <p>exposição</p>21 de agosto a <br>29 de agosto</p>
-         <p> apresentação <br> da pesquisa de<br>iniciação científica</p><p>21 de agosto<br>sala de vídeo 1</p>
-       </div>
-
- 
+       <div id="calendarioEventos"></div>
     
 </div>
 
-<div class="cronograma-right" padding-right=2 padding-left=2 width=200px>
+<div class="cronograma-right" padding-right=2 padding-left=2 width=250px>
  
 <!--<form method="post" action="cadastrar-enquete.php" align=right>-->
         
 <table height=10px><td><label class=laranjabold for="ano">2019</label></td><td align-content=right>
 
 <select id="meses" onchange="calendario();">
-<!--<option value="0">Janeiro</option>
+<option value="0">Janeiro</option>
 <option value="1">Fevereiro</option>
 <option value="2">Março</option>
 <option value="3">Abril</option>
 <option value="4">Maio</option>
 <option value="5">Junho</option>
-<option value="6">Julho</option>-->
+<option value="6">Julho</option>
 <option value="7">Agosto</option>
 <option value="8">Setembro</option>
 <option value="9">Outubro</option>
@@ -172,12 +179,12 @@ window.onload = calendario;
 <option value="11">Dezembro</option>
     </select></td></table>      
 <p> <div id="calendario"></div></p>
-    </div>
+    
    <div class="arrow-right" style="margin-top:100px">
-<a href="gallery1.php"><img src="images/arrow_right_black.png" title="ir para estudos de sombreamento" align="right"/></a>
+<a href="gallery.php"><img src="images/arrow_right_black.png" align="right"/></a>
 </div>
 
- 
+ </div>
 
     </div>
 

@@ -1,4 +1,4 @@
-﻿proje@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /* general structure */
@@ -26,12 +26,11 @@ html,body {
 
 .header-div {
 	display: flex;
+	align-content: center;
 	margin: auto;
-	justify-content: center;
-	text-align: center;
-	width: 50%px;
-	height: 70px;
-	align-self: center;
+	height: 50px;
+	float: left;
+	max-width: 900px;
 	}
 
   .header-icons{
@@ -43,6 +42,18 @@ html,body {
 		align-content: left;
 		height: 88px;
   }
+  .middle-div-row {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	justify-content: center;
+	align-content: center;
+	width: 768px;
+	}
+	 .middle-div-column {
+		flex:50%;
+	}
   
 .middle-div {
 	display: column;
@@ -55,9 +66,14 @@ html,body {
 	}
 	.paragraph {
 		font-family: Tahoma, Geneva, sans-serif;
-		font-size: 14px;
-		line-height: 2.5em;
+		font-size: 16px;
+		line-height: 1.4em;
 	}
+	.paragraph2 {
+		font-family: Tahoma, Geneva, sans-serif;
+		font-size: 16px;
+		line-height: 1em;
+			}	
     .laranjabold{
         font-family: Tahoma, Geneva, sans-serif;
 		font-size: 20px;
@@ -107,10 +123,10 @@ html,body {
 .footer-div3 {
 	display: grid;
 	margin: auto;
-	width: 768px;
+	width: 900px;
 	height: 100px;
-	grid-template-columns: 60px 60px auto 60px ;
-	max-width: 768px;
+	grid-template-columns: 60px 60px auto 60px 60px ;
+	max-width: 900px;
     position: absolute;
     left: 0;
     right: 0;
@@ -122,7 +138,7 @@ html,body {
 	margin: auto;
 	width: 768px;
 	height: 100px;
-	grid-template-columns: 60px 60px 60px auto 60px ;
+	grid-template-columns: 60px 60px 400px auto 60px ;
 	max-width: 768px;
     position: absolute;
     left: 0;
@@ -277,15 +293,16 @@ html,body {
 	display: inline;
 	margin-left: 2px;
 	padding-left: 10px;
-	background-color: #4AB7EC;
+	padding-right: 10px;
+	background-color: #FF9539;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	color: #DEF1FB;
 	float: right;
-	width: 250px;
-	height: 250px;
+	width: 500px;
+	height: 390px;
 	line-height: 1.4em;
-	text-align: left;
+	text-align: justify;
 		}
 .middle-div-versions {
 	display: flex;
@@ -393,7 +410,7 @@ html,body {
 	font-size: 16px;
 	color: #FFF;
 	float: left;
-	width: 230px;
+	width: 250px;
 	height: 250px;
 	line-height: 1.4em;
 	align: right;
@@ -411,17 +428,22 @@ html,body {
 	height: 250px;
 	line-height: 1.4em;
 	align: left;
-		}
+	}
+		
+	#calendario a:link { color: #FF9539; }
 
 /* juliano integrar */
    .middle-div-projects {
 	display: flex;
-	margin-left: auto;
-	margin-right: auto;
-	width: 600px;
-	height: 120px;
-	line-height: 3em;
-	   flex-flow: row;
+	margin: auto;
+	width: 900px;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+    vertical-align: middle;
+	max-width: 900px;
+    height: 150px;
+    flex-flow: flex;
 	}
 .middle-div-projects-icons {
 	display: flex;
@@ -448,11 +470,12 @@ html,body {
 			display: inline-flex;
 			margin-left: auto;
 			margin-right: auto;
-			width: 256px;
+			width: 253px;
 			height: 120px;
 			line-height: 3em;
 			background: white;
 			padding: 0;
+			justify-content: center;
 			position:relative;
 		}
 
@@ -486,8 +509,15 @@ html,body {
 					transition: all 0.5s linear;
 		}
 		.mouseover-text {
+
+		display: flex;
+		margin-right: auto;
+		margin-left: 60px;
+		height: 20px;
+		justify-content: center;
+		align-items: right;
 		font-family: Tahoma, Geneva, sans-serif;
-		width: 80px;
+		width: 100px;
 		font-size: 12px;
 		line-height: 1em;
 		text-align: center;
@@ -501,7 +531,7 @@ html,body {
 .header-versions {
 	display: grid;
 	margin: auto;
-	weight: 768px;
+	width: 768px;
 	height: 100px;
 	grid-template-columns: 50px 160px auto 50px 50px;
 	max-width: 768px;
@@ -534,40 +564,91 @@ html,body {
    .header-div2 {
 	display: grid;
 	margin: auto;
-	weight: 768px;
+	width: 900px;
 	height: 100px;
-	grid-template-columns:  80px 80px 80px 50px 150px;
-	max-width: 768px;
+	grid-template-columns: 150px 80px auto 80px 80px 80px 80px 80px;
+	max-width: 900px;
 	} 
 	 
 	 .header-div3 {
 	display: grid;
 	margin: auto;
-	weight: 768px;
+	width: 900px;
 	height: 100px;
-	grid-template-columns: 50px 150px auto 80px 80px;
-	max-width: 768px;
+	grid-template-columns: 150px 80px 80px auto 80px 80px 80px 80px;
+	max-width: 900px;
 	}  
 
  .header-div4 {
 	display: grid;
 	margin: auto;
-	weight: 768px;
+	width: 900px;
 	height: 100px;
-	grid-template-columns: 80px 50px 200px auto 80px;
-	max-width: 768px;
+	grid-template-columns: 150px 80px 80px 80px 80px auto 80px 80px;
+	max-width: 900px;
 	} 
 
 .header-div5 {
 	display: grid;
 	margin: auto;
-	weight: 768px;
+	width: 900px;
 	height: 100px;
-	grid-template-columns: 80px 80px 50px 150px auto;
+	grid-template-columns: 150px 80px 80px 80px 80px 80px auto 80px;
+	max-width: 900px;
+	} 
+.header-div6 {
+	display: grid;
+	margin: auto;
+	width: 900px;
+	height: 100px;
+	grid-template-columns: 150px 80px 80px 80px 80px 80px 80px auto;
+	max-width: 900px;
+	} 
+
+.header-div7 {
+	display: grid;
+	margin: auto;
+	width: 950px;
+	height: 100px;
+	grid-template-columns: 150px 80px 80px 80px 80px 80px 80px auto 60px 60px 60px;
+	max-width: 950px;
+	} 
+
+	.header-div-versions {
+	display: grid;
+	margin: auto;
+	width: 768px;
+	height: 100px;
+	grid-template-columns:  80px 80px 80px 50px 150px 50px 50px 50px;
 	max-width: 768px;
 	} 
 
+	.header-div-versions-under {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 10px;	
+	display: grid;
+	margin: auto;
+	width: 768px;
+	height: 50px;
+	grid-template-columns:  80px 80px 80px 50px 150px 70px 70px 70px;
+	max-width: 768px;
+	}
+
+	.header-icons-text{
+		font-family: Tahoma, Geneva, sans-serif;
+		font-size: 16px;
+		grid-column-start: <1>;
+		display: grid;
+		padding-right: 10px;
+		padding-left: 10px;
+		margin-right: 0px;
+		margin-bottom: 30px;
+		align: flex;
+		float: left;
+		}
+
 	.header-icons-left{
+		font-family: Tahoma, Geneva, sans-serif;
 		grid-column-start: <1>;
 		display: grid;
 		padding-right: 10px;
@@ -611,21 +692,22 @@ html,body {
 	display: grid;
 	margin: auto;
 	height: 550px;
-	grid-template-columns: 50% 40% 10%;
-	max-width: 1366px;
+	grid-template-columns: 50% 50%;
+	max-width: 900px;
 	}
 	.versions-elements-left{
 		grid-column-start: <0>;
-		display: grid;
+		display: flex;
+		flex-direction: column-reverse;
 		font-family: Tahoma, Geneva, sans-serif;
-		font-size: 12px;
+		font-size: 10px;
 		line-height: 1em;
 		padding-right: 10px;
 		padding-left: 10px;
 		margin-right: 0px;
 		margin-left: 0px;
 		height: 350px;
-		width: 100%;
+		width: 400px;
 		overflow: auto;
 			}
 
@@ -647,7 +729,8 @@ html,body {
 	}
 	.versions-elements-discussion{
 		grid-column-start: <1>;
-		display: grid;
+		display: flex;
+		flex-direction: column-reverse;
 		padding-right: 10px;
 		padding-left: 10px;
 		margin-right: 0px;
@@ -801,6 +884,14 @@ html,body {
   display: flex;
   font-size: 24px;
 }
+.button3 {
+  grid-column-start: <5>;
+  background-color: transparent;
+  width: 50px;
+  height:50px;
+  border: none;
+  float:right;
+  }
 
 .arrow-right-button{
 		display: flex;
@@ -810,32 +901,31 @@ html,body {
 		margin-left: 10px;
 			}
 .input-comment {
-	width: 300px;
-	height:50px;
-	background-color: #82b1ff;
+	width: 250px;
+	height:40px;
+	background-color: #FFF;
 	margin-top: 10px;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 16px;
-	font-color: #FFF;
+	font-size: 14px;
+	font-color: #000;
 	float: left;
-	border: none;
-	outline: none;
+	border: solid 2px #C0C0C0;
 	resize: none;
 }
 	::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  	color: white;
+  	color: #C0C0C0;
   	opacity: 1; /* Firefox */
 }
 .input-comment2 {
-	width: 300px;
-	height:50px;
-	background-color: #C0C0C0;
+	width: 200px;
+	height:40px;
+	background-color: #FFF;
 	margin-top: 10px;
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 16px;
-	font-color: #FFF;
+	font-size: 12px;
+	font-color: #000;
 	float: left;
-	border: none;
+	border: solid 2px #C0C0C0;
 	outline: none;
 	resize: none;
 }
@@ -846,7 +936,6 @@ html,body {
 	width: 550px;
 	height:100px;
 	background-color:#fff;
-	color:#000;
 	font-family: Tahoma, Geneva, sans-serif;
 	border: none;
 	outline: none;
@@ -872,7 +961,7 @@ ul, #discussions {
   line-height: 1.5em;
   font-family: Tahoma, Geneva, sans-serif;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 
  #discussions::first-line {
@@ -895,15 +984,16 @@ ul, #discussions {
 
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
-  content: "Ver comentários";
-  color: black;
+  content: "Ver comentários (+)";
+  color: #0000ff;
   display: inline-block;
   margin-right: 1px;
 }
 
 /* Change the color of the caret/arrow icon when clicked on (using JavaScript) */
 .caret-down::before {
-  color: #00F; 
+  color: #0000ff;
+  caret-color: #0000ff; 
 }
 
 /* Hide the nested list */

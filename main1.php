@@ -1,55 +1,74 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<?php include 'ganalytics.php'?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<link  href="fotorama/fotorama.css" rel="stylesheet">
+<script src="fotorama/fotorama.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Versão 1</title>
-	
-	<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="manifest" href="images/manifest.json">
-<meta name="msapplication-TileColor" content="#ff0000">
-<meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
-<meta name="theme-color" content="#ff0000">
+<title>Pîrâmides</title>
+
+<!--shadowbox-->
+
+    <link rel="stylesheet" type="text/css" href="lightbox/lightbox.min.css">
+    <script src="lightbox/lightbox-plus-jquery.min.js"></script>
+    <script type="text/javascript">
+    Shadowbox.init();
+    </script>
+
+<!--shadowboxEND-->
 	
 <link href="style.css" rel="stylesheet" type="text/css" />
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<script src="forum/reaction.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta name="description" content="Platnomads" />
+<?php include 'forum/webgl_test.php' ?>
 </head>
 <body leftmargin="50px" topmargin="50px" marginwidth="50px" marginheight="50px">
 
 
 <!--cabeçalho-->
+
+
+
+<div class="header-div7">
+  <?php include 'header_logo.php' ?>
+
+  <div class="header-icons-left"><a href="infoproject.php"><img src="images/view-tags.png" width="50" align="left"/></a></div>
+  <div class="header-icons-left"><a href="calendar.php"><img src="images/calendar-100x100.png"  width="50" align="left"/></a></div>
+     <div class="header-icons-left"> <a href="gallery1.php"><img src="images/circulo s.png"  width="48"  align="right" /></a></div>
+        <div class="header-icons-left"> <a href="gallery2.php"><img src="images/circulo e.png"  width="48"  align="right" /></a></div> 
+   <div class="header-icons-left"><a href="maps.php"><img src="images/view-locations.png"  width="50"  align="left" /></a></div>
+   <div class="header-icons-left"><a href="versions.php"><img src="images/versoes.PNG"  width="50"  align="right" /></a></div>
+   <div class="header-icons-text"><br>Pirâmides</div>
+
+
+<div class="header-icons-right"><img src="images/quadrado triangulos.png" width="50px" title="triângulos" align="left"></a></div>
+   <div class="header-icons-right"><a href="main2.php"><img src="images/quadrado voronoi.png" width="50px" title="voronoi" align="right" style="opacity:0.2"></a></div>
+   <div class="header-icons-right"><a href="main3.php"><img src="images/quadrado quadrados.png" width="50" title="quadrados" align="right" style="opacity:0.2"></a></div>
+ </div>
+
 	
-<div class="header-versions">
-  <div class="versions_left"><img src="images/versao-1.jpg" width="50px" title="versão 1" align="left"></div>
-	<div class="versions_left">VERSÃO1<br>versão com praça externa, maior área verde e espaços de convivência</div>
-<div class="versions_right"><a href="main2.php"><img src="images/versao-2-100x100.png" width="50px" title="versão 2" align="right"></a></div>
-<div class="versions_right"><a href="main3.php"><img src="images/versao-3.1-100x100.png" width="50" title="versão 3" align="right"></a></div>
 
 </div>
 	
+
+
 	
 	<!--conteúdo-->
 <div class="versions-div-grid">
+
+
+ 
 	<div class="versions-elements-left">
-<!--discussion frame. In future versions migrate the php and jscript to separate files-->
+     
     <?php
       session_start();
+      $_SESSION['project_id']=2;
       $user_id = $_SESSION['loggedin'];
       unset($GLOBALS['version']);
       $_SESSION['version']=1;
@@ -57,7 +76,7 @@
         mysql_select_db("platnomads") or die("Cannot connect to database"); //connect to database
      
           //selects discussion topics based on versions
-      $query = mysql_query("SELECT id_discussion, user_name, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 1"); // SQL Query
+      $query = mysql_query("SELECT id_discussion, user_name, relation, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 1 AND project_id = 3"); // SQL Query
         while($row = mysql_fetch_array($query))
         {
         ?>
@@ -67,12 +86,13 @@
         //convert sql date_time to desired format. Include  %H:%M:%S at strftime to display the hour
         setlocale(LC_ALL, 'pt_BR.UTF-8','ptb_ptb');
         $time = strtotime($row['date_time']);
-        $date_time_discussion = strftime("%d %B, %Y", $time);
+        $date_time_discussion = strftime("%d %b, %Y", $time);
 
         //shows discussions
-         echo "{$row['user_name']} | {$date_time_discussion} | "?> <a href="discussion_comment.php?id_discussion=<?php echo "{$row['id_discussion']}" ?>"> Comentar </a> | <i class="far fa-smile"></i> 0 | <i class="far fa-frown"></i> 0 | <span class="caret"></span><br>
+         echo "{$row['user_name']} | {$date_time_discussion}"?>  
+
+    	 | <span class="caret"></span><br>
     	 <?php
-        // echo " | {$row['likes']} | {$row['dislikes']}<br>";
          echo "{$row['discussion']}<br>";
          ?>
          </span>
@@ -87,12 +107,30 @@
                $time = strtotime($comments['date_time']);
                $date_time_comments = strftime("%d %B, %Y", $time);
                //print the comments. As only the comments which id_discussion is relevant where written to the $id_discussion array, no need to use conditional statements to filter them.
-     ?><li><?php  echo "<br>{$comments['user_name']} | {$date_time_comments} " ?>| <i class="far fa-smile"></i><span id="react-count-up"> 0</span> | <i class="far fa-frown"></i><span id="react-count-down"> 0</span><br> 
+     ?><li><?php  echo "<br>{$comments['user_name']} | {$date_time_comments} " ?>|<br> 
 
     <a class="nested-commentary"><?php echo "{$comments['commentary']}<br>";?></a></li><?php
               }
               // echo {$comments['likes']} | {$comments['dislikes']}<br>";
-            ?>
+            
+              if(isset($_SESSION['loggedin']))
+              {
+               ?>
+              <form name="comments" action="forum/comment_post.php" method="POST">
+                  <span>
+                     <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="comente nesta conversa (máximo de 200 caracteres)"></textarea>
+                     <input type="hidden" id="id_discussion" name="id_discussion" value="<?php echo "{$row['id_discussion']}";?>">
+                  <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right.png"></button> <br/>
+                    </form>
+                    </span>
+                    <?php;
+              } else {
+
+                ?><span>
+                     <textarea data-ls-module="charCounter" maxlength="0" class="input-comment2" name="discussion" id="discussion" required="required" placeholder="registre-se para postar uma resposta!"></textarea></span>
+                <?php;
+              }
+              ?>
              </ul>
           </li>
       </ul>
@@ -107,26 +145,66 @@ var i;
 for (i = 0; i < toggler.length; i++) {
   toggler[i].addEventListener("click", function() {
     this.parentElement.querySelector(".nested").classList.toggle("active");          
-    this.classList.toggle("caret-down");
+    this.classList.toggle(".caret-down");
     
   });
 }
 </script>
+<!-- Verify if user is logged; if not, disables the posting area-->
+<?php
+if(isset($_SESSION['loggedin']))
+{
+  ?>
+<form name="discussion" action="forum/post_comment.php" method="POST">
+    <span id=discbox>
+       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="dê sua opinião sobre o Pirâmides (máximo de 200 caracteres)"></textarea>
+    <button class="button" type="submit" name="submit" id="discussion"><img src="images/arrow_right.png"></button> <br/>
+      </form>
+      <script>
+        const discbox = document.getElementById('discbox');
+        discbox.scrollIntoView(false);
+      </script>
+      </span>
+      <?php;
+} else {
+
+  ?><span>
+       <textarea data-ls-module="charCounter" maxlength="0" class="input-comment" name="discussion" id="discussion" required="required" placeholder="registre-se para iniciar uma conversa!"></textarea></span>
+  <?php;
+}
+?>
 
 <!--like dislike system-->
-
-
-
-
-
-<!--BIMserver frame-->
-	</div>
-	<div class="versions-elements-center">
-		
-            <canvas id="canvas" height="500" width="400"></canvas>
-<script src="gl-matrix.js"></script>
-<script type="module">
-/**
+ </div>
+	
+ <div class="versions-elements-center"> 
+  <?php
+  //Reads cookie from project.php. This cookie stays persistent through versions.
+  $webgl = $_COOKIE['webgl'];
+  if ($webgl == 1) 
+  {
+  // WebGL supported. Loads interactive 3D model.
+  ?>    
+ <div id="viewer" class="versions-elements-center" style="position: relative;">
+  
+                 
+    <canvas id="canvas" style="width:450px; height:350px; border:2px solid #C0C0C0; position: absolute; left: 0; top: 0; z-index: 1; opacity:0.90"></canvas>
+    <canvas id="2dcanvas" style="width:450px; height:350px; border:2px solid #C0C0C0;position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+        <script type="text/javascript">
+          var c = document.getElementById("2dcanvas");
+          var gl = c.getContext("2d");
+          gl.fillStyle = "black";
+          gl.fillRect(0, 125, 500, 28);
+          gl.fillRect(270, 0, 40, 300)
+        </script>
+        
+    <div id="progressbar">
+      <div id="progress"></div>
+    </div>
+    </div>
+  <script src="gl-matrix.js"></script>
+  <script type="module">
+  /**
  * This class will return the API address for a BIMserver Client
  */
 
@@ -156,8 +234,10 @@ import {BimServerViewer} from "http://www.nomads.usp.br:8080/bimserver/apps/bims
 export class Minimal {
 
   constructor() {
+        
     // You need to change these to something that makes sense
     this.demoSettings = {
+      
       // Address of your BIMserver
       //bimServerAddress: Address.getApiAddress(),
       bimServerAddress: "http://www.nomads.usp.br:8080/bimserver/",
@@ -167,10 +247,13 @@ export class Minimal {
         password: "@bimserver"
       },
       // Project ID of the project you want to load the latest revision from
-      poid: 196609,
+      poid: 720897,
       // The settings for the viewer
       viewerSettings: {
-      
+        reportProgress: true,
+        autoResize: true,
+       
+              
         viewerBasePath: "http://www.nomads.usp.br:8080/bimserver/apps/bimsurfer3/"
         // Not putting anything here will just use the default settings
       
@@ -192,9 +275,11 @@ export class Minimal {
         }, (project) => {
           // Select what canvas to bind the viewer to
           var canvas = document.getElementById("canvas");
+          devicePixelRatio=1;
           
+
           // Create a new BimServerViewer
-          this.bimServerViewer = new BimServerViewer(this.api, this.demoSettings.viewerSettings, canvas, window.innerWidth, window.innerHeight);
+          this.bimServerViewer = new BimServerViewer(this.api, this.demoSettings.viewerSettings, canvas, canvas.width, canvas.height);
             // Autoresize automatically resizes the viewer to the full width/height of the screen
    
    
@@ -212,18 +297,34 @@ export class Minimal {
 }
 
 new Minimal().start();
-  </script>
+</script>
+<?php;
+}
+ else 
+ {
+    // webgl not supported. Loads a gallery instead;
+  ?>
+<div class="fotorama"
+  data-nav=false
+  data-width="450"
+  data-height="350"
+  data-allowfullscreen="true">
+  <img src="images/1/piramide_fallback.png">
+   
+
+</div>
+<?php;
+}
+?>
+               
+ 
 	</div>
-	<form action="post.php" method="POST">
-	<div class="versions-elements-right">
-		<button class="button" type="submit" name="version" id="version" value=1></button> 
-	</div>
-	
+	 
 </div>
 
 
 <!--rodapé-->
-<?php include 'footer_internal.php' ?>
+<?php include 'footer_internal_main.php' ?>
 
 </html>
 </body>

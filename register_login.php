@@ -54,7 +54,13 @@ session_destroy();
         	<input type="text" size="29" name="user_name" id="user_name" required="required" placeholder="Usuário (sem espaços)"/> usuário* <br/>
 		  	<input type="text" size="29" name="email" id="email" 
 				   required="required" placeholder="exemplo@seuemail.com.br"/> e-mail* <br/>
-		  	<input type="text" size="29" name="occupation" id="occupation"/> ocupação <br/>
+		  	
+		  	   <select id="relation" name="relation" style="min-width:17.70em;">
+               <option value = "responsavel">responsável por aluno</option>
+               <option value = "administrativo">colaborador APAE</option>
+               <option value = "terceirizado">colaborador terceirizado</option>
+               <option value = "professor">professor</option>
+             </select> <label>relação</label>
            <input type="password" size="29" name="password" id="password" required="required" placeholder="*********" /> senha*<br/>
            <button type="submit" name="register" formmethod="post">Registrar</button>
         </form>

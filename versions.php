@@ -1,26 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<?php include 'ganalytics.php' ?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Versões</title>
-	
-	<link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="manifest" href="images/manifest.json">
-<meta name="msapplication-TileColor" content="#ff0000">
-<meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
-<meta name="theme-color" content="#ff0000">
+<title>proteções</title>
 	
 <link href="style.css" rel="stylesheet" type="text/css" />
 <!-- Add icon library -->
@@ -32,13 +17,17 @@
 
 <!--cabeçalho-->
 	
-<div class="header-div2">
-  <div class="header-icons-left"><a href="infoproject.php"><img src="images/view-tags.png" width="50" height="50" float="left"/></a></div>
-  <div class="header-icons-left"><a href="calendar.php"><img src="images/calendar-100x100.png" alt="" width="50" height="50" float="left"/></a></div>
- <div class="header-icons-left"> <a href="gallery.php"><img src="images/view-images-48x48.png" alt="" width="50" float="left" /></a></div>
- <div class="header-icons-left"><img src="images/versoes.PNG" alt="" width="50" height="50" float="left" /></a></div>
-<div class="header-icons-center"><p><br><br>acesso às versões</p></div>
-</div>
+<div class="header-div6">
+	<?php include 'header_logo.php' ?>
+    <div class="header-icons-left"><a href="infoproject.php"><img src="images/view-tags.png" width="50" align="left"/></a></div>
+  <div class="header-icons-left"><a href="calendar.php"><img src="images/calendar-100x100.png"  width="50" align="left"/></a></div>
+     <div class="header-icons-left"> <a href="gallery1.php"><img src="images/circulo s.png"  width="48"  align="right" /></a></div>
+        <div class="header-icons-left"> <a href="gallery2.php"><img src="images/circulo e.png"  width="48"  align="right" /></a></div> 
+   <div class="header-icons-left"><a href="maps.php"><img src="images/view-locations.png"  width="50"  align="left" /></a></div>
+   <div class="header-icons-left"><img src="images/versoes.PNG"  width="50"  align="right" /></a></div>
+   <div class="header-icons-text"><br>proteções</div>
+
+ </div>
  <!--conteúdo-->
 	<!--icones versões-->
 	
@@ -77,22 +66,29 @@ if(webglContext === null) {
 	document.cookie="webgl=1";
 }
 </script>
-	
-	
-	
+
+		
 <div class="middle-div-projects">
- <span><a href="main1.php" class="darken"><img src="images/versao1.png" width="100" height="100" float="left"/><span class="mouseover-text"><br>versão com praça externa, maior área verde e espaços de convivência</span></span></a>
+	<p></p>
+	<div class="arrow-right" style="margin-top:20px; margin-right: 10px">
+<a href="maps.php"><img src="images/arrow_left.png" align="left"/></a>
+</div>
+ <span><a href="main1.php" class="darken"><img src="images/quadrado triangulos.png" width="100" height="100" float="left"><span class="mouseover-text"><br><br>proteção formada a partir de módulos triangulares.</span></span></a></a>
 		
-<span><a href="main2.php" class="darken"><img src="images/versao2.png" width="100" height="100" float="left"/><span class="mouseover-text"><br><br>versão maior área construída e espaços diversos</span></span></a>
+<span><a href="main2.php" class="darken"><img src="images/quadrado voronoi.png" width="100" height="100" float="left"/><span class="mouseover-text"><br><br>proteção formada através de caixas vaazadas.</span></span></a>
 		
-<span><a href="main3.php" class="darken"><img src="images/versao3_225x225.png" width="100" height="100" float="left"/><span class="mouseover-text"><br><br>versão com maior áre a de estacionamento e menor espaço interno</span></span></a>
+<span><a href="main3.php" class="darken"><img src="images/quadrado quadrados.png" width="100" height="100" float="left"/><span class="mouseover-text"><br><br>proteção formada através de aberturas variáveis</span></span></a>
+<div class="arrow-right">
+<a href="main1.php"><img src="images/arrow_right_black.png" align="left"/></a>
+</div>
 </div>
  	
-	<!--icones características-->
+	<!--icones características
 <div class="middle-div-projects-icons">
- <span class="icon-projects">VERSÃO1</span><span class="icon-projects">VERSÃO2</span><span class="icon-projects">VERSÃO3</span>
+ <span class="icon-projects">VERSÃO1</span><span class="icon-projects">VERSÃO2</span><span class="icon-projects">VERSÃO3</span>-->
+
 </div>
-	
+<!--	
 <div class="middle-div-projects-icons">
  <span class="icon-projects"><i class="fas fa-sun"></i><i class="fas fa-sun"></i></span><span class="icon-projects"><i class="fas fa-sun"></i><i class="fas fa-sun"></i><i class="fas fa-sun"></i></span><span class="icon-projects"><i class="fas fa-sun"></i></span>
 </div>
@@ -109,7 +105,7 @@ if(webglContext === null) {
 
 	<div class="middle-div-projects-icons">
 <br><span class="icon-projects paragraph"><i class="fas fa-sun"></i>= melhor conforto térmico</span><span class="icon-projects paragraph"><i class="fas fa-dollar-sign"></i>= maior custo de construção</span><span class="icon-projects paragraph"><i class="fas fa-wrench"></i> = maior custo de manutenção</span>
-</div>
+</div>-->
 </div>
 
 

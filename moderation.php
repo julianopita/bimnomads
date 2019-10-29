@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<?php include 'ganalytics.php';?>
+<?php include 'ganalytics.php'?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://code.createjs.com/1.0.0/createjs.js"></script>
@@ -22,7 +22,7 @@
     </script>
 
 <!--shadowboxEND-->
-  
+	
 <link href="style.css" rel="stylesheet" type="text/css" />
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -36,8 +36,17 @@
 
 <!--cabeçalho-->
 
-
-
+<!-- Verify if user is logged and is a moderator; if not, redirects to login-->
+<?php
+session_start();
+if($_SESSION['moderator']<>2)
+{
+      Print '<script>alert("Usuário não é moderador!");</script>'; //Prompts the user
+      Print '<script>window.location.assign("register_login.php");</script>'; // redirects to register.html
+      exit;
+    }
+    ?>
+    
 <div class="header-div7">
 
   <?php include 'header_logo.php' ?>
@@ -50,107 +59,30 @@
    <div class="header-icons-text"><br>área externa</div>
 
 
-   <div class="header-icons-right"><a><img src="images/logo apae.png" width="50px" title="briefing" align="right"></a></div>
-   <div class="header-icons-right"><a href="main1.php"><img src="images/externo_thumbs.png" width="50px" title="área externa" align="left" style="opacity:0.5"></a></div>
-   <div class="header-icons-right"><a href="main2.php"><img src="images/salas_thumbs.png" width="50px" title="área externa" align="right" style="opacity:0.5"></a></div>
-   
+   <div class="header-icons-right"><img src="images/externa.png" width="50px" title="área externa" align="left"></a></div>
+   <div class="header-icons-right"><a href="main2.php"><img src="images/salas.png" width="50px" title="salas de aula" align="right" style="opacity:0.5"></a></div>
    
  </div>
 </div>
-  <!--conteúdo-->
-<div class="versions-div-grid">
- <div class="versions-elements-left">
+	<!--conteúdo-->
+
+ 
+  <div class="discussion-div-grid">
+  
+      <div class="versions-elements-discussion">
      
     <!--discussion frame. In future versions migrate the php and jscript to separate files-->
-    <script type="text/javascript">
-
-  
-
-     function insert_like_discussion(id)
-    { var id_discussion = id;
-
-      $.ajax({
-      type: 'post',
-      url: 'forum/store_rating.php',
-      data: {
-        post_like_discussion: "like", id: id,
-             },
-      success: function (id) {
-
-        $("#like"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="unlike<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000fff" onclick="insert_unlike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i>');
-        $("#dislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #C0C0C0";)></i>');   
-    }
-      });
-    }
-
-    function insert_dislike_discussion(id)
-    { var id_discussion = id;
-    $.ajax({
-      type: 'post',
-      url: 'forum/store_rating.php',
-      data: {
-        post_dislike_discussion:"dislike", id:id,
-      },
-      success: function (id) {
-        
-        $("#like"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #C0C0C0";)></i>');
-        $("#dislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="undislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000fff" onclick="insert_undislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i>');
-           
-    }
-      });
-    }
-
-     function insert_unlike_discussion(id)
-    { var id_discussion = id;
-    $.ajax({
-      type: 'post',
-      url: 'forum/store_rating.php',
-      data: {
-        post_unlike_discussion:"unlike", id:id,
-      },
-      success: function (id) {
-        
-        $("#unlike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000000" onclick="insert_like_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $like['likes']; ?>');
-        $("#dislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000000" onclick="insert_dislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $dislike['dislikes']; ?>');
-           
-    }
-      });
-    }
-
-    function insert_undislike_discussion(id)
-    { var id_discussion = id;
-    $.ajax({
-      type: 'post',
-      url: 'forum/store_rating.php',
-      data: {
-        post_undislike_discussion:"undislike", id:id,
-      },
-      success: function (id) {
-        
-        $("#undislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000000" onclick="insert_like_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $like['likes']; ?>');
-        $("#like"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000000" onclick="insert_dislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $dislike['dislikes']; ?>');
-           
-    }
-      });
-    }
-
-  </script>
-
-
-
-    <?php
+   <?php
       session_start();
+      $_SESSION['project_id']=2;
       $user_id = $_SESSION['loggedin'];
       unset($GLOBALS['version']);
-      $_SESSION['version']=3;
-      include 'forum/event_checker.php';
-      $allow_posting = $_SESSION['allow_posting'];
-
+      $_SESSION['version']=1;
         mysql_connect("localhost", "platnomads","@bimserver") or die(mysql_error()); //Connect to server
         mysql_select_db("platnomads") or die("Cannot connect to database"); //connect to database
      
           //selects discussion topics based on versions
-      $query = mysql_query("SELECT id_discussion, user_name, relation, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 3 AND project_id = 2"); // SQL Query
+      $query = mysql_query("SELECT id_discussion, user_name, relation, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 1 AND project_id = 2"); // SQL Query
         while($row = mysql_fetch_array($query))
         {
         ?>
@@ -224,12 +156,14 @@
       <?php
            };
          ?>
-
+      </span><form method="post" action="forum/discussion_delete.php">
+         <button type="submit" name="id_discussion" value=<?php echo "{$row['id_discussion']}"?>>apagar</button>
+      </form></span>
+      <a href="forum/discussion_edit.php">editar</a>
        | <span class="caret"></span><br>
        <?php
         // echo " | {$row['likes']} | {$row['dislikes']}<br>";
-         echo "{$row['discussion']}<br>";
-         ?>
+         echo "{$row['discussion']}"?>
          </span>
          <ul class="nested">
          <?php   
@@ -242,40 +176,21 @@
                $time = strtotime($comments['date_time']);
                $date_time_comments = strftime("%d %B, %Y", $time);
                //print the comments. As only the comments which id_discussion is relevant where written to the $id_discussion array, no need to use conditional statements to filter them.
-     ?><li><?php  echo "<br>{$comments['user_name']} | {$date_time_comments} " ?>|<br> 
+     ?><li><?php echo "<br>{$comments['user_name']} | {$date_time_comments} " ?>| 
+       <form method="post" action="forum/comment_delete.php">
+         <button class="button" type="submit" name="id_comment" value=<?php echo "{$comments['id_comment']}"?>>apagar</button>
+      </form>
+       
+        <a href="comment_edit.php">editar</a><br>
 
     <a class="nested-commentary"><?php echo "{$comments['commentary']}<br>";?></a></li><?php
               }
+              ?>
+     
+      <?php
               // echo {$comments['likes']} | {$comments['dislikes']}<br>";
             
-    if (isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 0)
-    { if ($_SESSION['technical'] == 2)
-      {
-      ?>
-      <form name="comments" action="forum/comment_post.php" method="POST">
-                  <span>
-                     <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="comente nesta conversa como equipe técnica"></textarea>
-                     <input type="hidden" id="id_discussion" name="id_discussion" value="<?php echo "{$row['id_discussion']}";?>">
-                  <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right_grey.png"></button> <br/>
-                    </form>
-                    </span>
-                    <?php
-                }
-                else
-                {
-                  ?>
-                  <span>
-                     <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="aguarde retorno da equipe técnica"></textarea>
-                    
-                  <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right_grey.png"></button> <br/>
-                    
-                    </span>
-                  <?php
-                }
-              }
-                else
-                {  
-              if(isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 1)
+              if(isset($_SESSION['loggedin']))
               {
                ?>
               <form name="comments" action="forum/comment_post.php" method="POST">
@@ -292,9 +207,6 @@
                      <textarea data-ls-module="charCounter" maxlength="0" class="input-comment2" name="discussion" id="discussion" required="required" placeholder="registre-se para postar uma resposta!"></textarea></span>
                 <?php;
               }
-              
-          }
-
               ?>
              </ul>
           </li>
@@ -315,89 +227,14 @@ for (i = 0; i < toggler.length; i++) {
   });
 }
 </script>
+<!-- Verify if user is logged and is a moderator; if not, redirects to login-->
 
-<!-- Verify if posting is allowed; if not, enables the posting area only to tech-->
-<?php
-if (isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 0)
-{ if ($_SESSION['technical'] == 2)
-{
-?>
-<form name="discussion" action="forum/post_comment.php" method="POST">
-    <span id=discbox>
-       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="poste um novo comentário como equipe técnica"></textarea>
-    <button class="button" type="submit" name="submit" id="discussion"><img src="images/arrow_right.png"></button> <br/>
-      </form>
-      <script>
-        const discbox = document.getElementById('discbox');
-        discbox.scrollIntoView(false);
-      </script>
-      </span>
-      <?php;
-}
- else
-{
- ?>
-<span>
- <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="aguarde retorno da equipe técnica"></textarea>
-                    
- <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right.png"></button> <br/>
-                    
- </span>
-<?php
- }
-}
-else
-{
-?>
-<!-- Verify if user is logged; if not, disables the posting area-->
-<?php
-if(isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 1)
-{
-  ?>
-<form name="discussion" action="forum/post_comment.php" method="POST">
-    <span id=discbox>
-       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="contribua para definição do briefing (máximo de 200 caracteres)"></textarea>
-    <button class="button" type="submit" name="submit" id="discussion"><img src="images/arrow_right.png"></button> <br/>
-      </form>
-      <script>
-        const discbox = document.getElementById('discbox');
-        discbox.scrollIntoView(false);
-      </script>
-      </span>
-      <?php;
-} else {
 
-  ?><span>
-       <textarea data-ls-module="charCounter" maxlength="0" class="input-comment" name="discussion" id="discussion" required="required" placeholder="registre-se para iniciar uma conversa!"></textarea></span>
-  <?php;
-}
-}
-
-?>
 
 <!--like dislike system-->
  </div>
-  
- <div class="versions-elements-center"> 
-  <div class="fotorama"
-  data-nav="thumbs"
-  data-width="500"
-  data-height="300"
-  data-allowfullscreen="true">
-  <img src="images/gallery/apae/apae_1.jpg">
-  <img src="images/gallery/apae/apae_2.jpg">
-  <img src="images/gallery/apae/apae_3.jpg">
-  <img src="images/gallery/apae/apae_4.jpg">
-  <img src="images/gallery/apae/apae_5.jpg">
-  <img src="images/gallery/apae/apae_6.jpg">
-  <img src="images/gallery/apae/apae_7.jpg">
-  <img src="images/gallery/apae/apae_8.jpg">
-  <img src="images/gallery/apae/apae_9.jpg">
-  
+	</div>	 
 </div>
-          
- </div>
-  </div>
 
 
 <!--rodapé-->

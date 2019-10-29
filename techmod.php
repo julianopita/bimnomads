@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<?php include 'ganalytics.php';?>
+<?php include 'ganalytics.php'?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://code.createjs.com/1.0.0/createjs.js"></script>
@@ -22,7 +22,7 @@
     </script>
 
 <!--shadowboxEND-->
-  
+	
 <link href="style.css" rel="stylesheet" type="text/css" />
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -50,14 +50,12 @@
    <div class="header-icons-text"><br>área externa</div>
 
 
-   <div class="header-icons-right"><a><img src="images/logo apae.png" width="50px" title="briefing" align="right"></a></div>
-   <div class="header-icons-right"><a href="main1.php"><img src="images/externo_thumbs.png" width="50px" title="área externa" align="left" style="opacity:0.5"></a></div>
-   <div class="header-icons-right"><a href="main2.php"><img src="images/salas_thumbs.png" width="50px" title="área externa" align="right" style="opacity:0.5"></a></div>
-   
+   <div class="header-icons-right"><img src="images/externa.png" width="50px" title="área externa" align="left"></a></div>
+   <div class="header-icons-right"><a href="main2.php"><img src="images/salas.png" width="50px" title="salas de aula" align="right" style="opacity:0.5"></a></div>
    
  </div>
 </div>
-  <!--conteúdo-->
+	<!--conteúdo-->
 <div class="versions-div-grid">
  <div class="versions-elements-left">
      
@@ -140,17 +138,15 @@
 
     <?php
       session_start();
+      $_SESSION['project_id']=2;
       $user_id = $_SESSION['loggedin'];
       unset($GLOBALS['version']);
-      $_SESSION['version']=3;
-      include 'forum/event_checker.php';
-      $allow_posting = $_SESSION['allow_posting'];
-
+      $_SESSION['version']=1;
         mysql_connect("localhost", "platnomads","@bimserver") or die(mysql_error()); //Connect to server
         mysql_select_db("platnomads") or die("Cannot connect to database"); //connect to database
      
           //selects discussion topics based on versions
-      $query = mysql_query("SELECT id_discussion, user_name, relation, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 3 AND project_id = 2"); // SQL Query
+      $query = mysql_query("SELECT id_discussion, user_name, relation, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 1 AND project_id = 2"); // SQL Query
         while($row = mysql_fetch_array($query))
         {
         ?>
@@ -248,34 +244,7 @@
               }
               // echo {$comments['likes']} | {$comments['dislikes']}<br>";
             
-    if (isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 0)
-    { if ($_SESSION['technical'] == 2)
-      {
-      ?>
-      <form name="comments" action="forum/comment_post.php" method="POST">
-                  <span>
-                     <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="comente nesta conversa como equipe técnica"></textarea>
-                     <input type="hidden" id="id_discussion" name="id_discussion" value="<?php echo "{$row['id_discussion']}";?>">
-                  <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right_grey.png"></button> <br/>
-                    </form>
-                    </span>
-                    <?php
-                }
-                else
-                {
-                  ?>
-                  <span>
-                     <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="aguarde retorno da equipe técnica"></textarea>
-                    
-                  <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right_grey.png"></button> <br/>
-                    
-                    </span>
-                  <?php
-                }
-              }
-                else
-                {  
-              if(isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 1)
+              if(isset($_SESSION['loggedin']))
               {
                ?>
               <form name="comments" action="forum/comment_post.php" method="POST">
@@ -292,9 +261,6 @@
                      <textarea data-ls-module="charCounter" maxlength="0" class="input-comment2" name="discussion" id="discussion" required="required" placeholder="registre-se para postar uma resposta!"></textarea></span>
                 <?php;
               }
-              
-          }
-
               ?>
              </ul>
           </li>
@@ -315,48 +281,14 @@ for (i = 0; i < toggler.length; i++) {
   });
 }
 </script>
-
-<!-- Verify if posting is allowed; if not, enables the posting area only to tech-->
-<?php
-if (isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 0)
-{ if ($_SESSION['technical'] == 2)
-{
-?>
-<form name="discussion" action="forum/post_comment.php" method="POST">
-    <span id=discbox>
-       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="poste um novo comentário como equipe técnica"></textarea>
-    <button class="button" type="submit" name="submit" id="discussion"><img src="images/arrow_right.png"></button> <br/>
-      </form>
-      <script>
-        const discbox = document.getElementById('discbox');
-        discbox.scrollIntoView(false);
-      </script>
-      </span>
-      <?php;
-}
- else
-{
- ?>
-<span>
- <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="aguarde retorno da equipe técnica"></textarea>
-                    
- <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right.png"></button> <br/>
-                    
- </span>
-<?php
- }
-}
-else
-{
-?>
 <!-- Verify if user is logged; if not, disables the posting area-->
 <?php
-if(isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 1)
+if(isset($_SESSION['loggedin']))
 {
   ?>
 <form name="discussion" action="forum/post_comment.php" method="POST">
     <span id=discbox>
-       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="contribua para definição do briefing (máximo de 200 caracteres)"></textarea>
+       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="dê sua opinião sobre a área externa (máximo de 200 caracteres)"></textarea>
     <button class="button" type="submit" name="submit" id="discussion"><img src="images/arrow_right.png"></button> <br/>
       </form>
       <script>
@@ -371,33 +303,148 @@ if(isset($_SESSION['loggedin']) && $_SESSION['allow_posting'] == 1)
        <textarea data-ls-module="charCounter" maxlength="0" class="input-comment" name="discussion" id="discussion" required="required" placeholder="registre-se para iniciar uma conversa!"></textarea></span>
   <?php;
 }
-}
-
 ?>
 
 <!--like dislike system-->
  </div>
-  
+	
  <div class="versions-elements-center"> 
-  <div class="fotorama"
-  data-nav="thumbs"
-  data-width="500"
-  data-height="300"
-  data-allowfullscreen="true">
-  <img src="images/gallery/apae/apae_1.jpg">
-  <img src="images/gallery/apae/apae_2.jpg">
-  <img src="images/gallery/apae/apae_3.jpg">
-  <img src="images/gallery/apae/apae_4.jpg">
-  <img src="images/gallery/apae/apae_5.jpg">
-  <img src="images/gallery/apae/apae_6.jpg">
-  <img src="images/gallery/apae/apae_7.jpg">
-  <img src="images/gallery/apae/apae_8.jpg">
-  <img src="images/gallery/apae/apae_9.jpg">
+  <?php
+  //Reads cookie from project.php. This cookie stays persistent through versions.
+  $webgl = $_COOKIE['webgl'];
+  if ($webgl == 1) 
+  {
+  // WebGL supported. Loads interactive 3D model.
+  ?>    
+ <div id="viewer" class="versions-elements-center" style="position: relative;">
   
-</div>
+                 
+    <canvas id="canvas" style="width:450px; height:350px; border:2px solid #C0C0C0; position: absolute; left: 0; top: 0; z-index: 90000;"></canvas>
+            
+    <div id="progressbar">
+      <div id="progress"></div>
+    </div>
+    </div>
+  <script src="gl-matrix.js"></script>
+  <script type="module">
+  /**
+ * This class will return the API address for a BIMserver Client
+ */
+
+export class Address {
+  static getApiAddress() {
+    var pathname = document.location.pathname;
+    if (pathname.length > 16 && pathname.indexOf("http://www.nomads.usp.br:8080/bimserver/apps/bimsurfer3/") != -1) {
+      // We assume that BIMsurfer 3 is being served from a BIMserver and that this is also the BIMserver we would like to connect to
+      const href = document.location.href;
+      return href.substring(0, href.indexOf("http://www.nomads.usp.br:8080/bimserver/apps/bimsurfer3/"));
+    } else {
+      // Return a default
+      console.log(document.location);
+      return "http://localhost:8080/bimserver";
+    }
+  }
+}
+
+
+import {BimServerClient} from "http://www.nomads.usp.br:8080/bimserver/apps/bimsurfer3/deps/bimserverjsapi/bimserverclient.js"
+import {BimServerViewer} from "http://www.nomads.usp.br:8080/bimserver/apps/bimsurfer3/viewer/bimserverviewer.js"
+
+/*
+ * This class is where the minimal demo starts. This is intended as an example you can copy-and-paste to start integrating the viewer in your own application.
+ */
+
+export class Minimal {
+
+  constructor() {
+        
+    // You need to change these to something that makes sense
+    this.demoSettings = {
+      
+      // Address of your BIMserver
+      //bimServerAddress: Address.getApiAddress(),
+      bimServerAddress: "http://www.nomads.usp.br:8080/bimserver/",
+      // Login credentials of your BIMserver, obviously you'd never include these for production applications
+      bimServerLogin: {
+        username: "platnomads@gmail.com",
+        password: "@bimserver"
+      },
+      // Project ID of the project you want to load the latest revision from
+      poid: 655361,
+      // The settings for the viewer
+      viewerSettings: {
+        reportProgress: true,
+        autoResize: true,
+       
+              
+        viewerBasePath: "http://www.nomads.usp.br:8080/bimserver/apps/bimsurfer3/"
+        // Not putting anything here will just use the default settings
+      
+      }
+    };
+
+  }
+
+  start() {
+    // Connect to a BIMserver
+    this.api = new BimServerClient(this.demoSettings.bimServerAddress);
+    // Initialize the API
+    this.api.init(() => {
+      // Login
+      this.api.login(this.demoSettings.bimServerLogin.username, this.demoSettings.bimServerLogin.password, () => {
+        // Get the project details
+        this.api.call("ServiceInterface", "getProjectByPoid", {
+          poid: this.demoSettings.poid
+        }, (project) => {
+          // Select what canvas to bind the viewer to
+          var canvas = document.getElementById("canvas");
+          devicePixelRatio=1;
           
- </div>
-  </div>
+
+          // Create a new BimServerViewer
+          this.bimServerViewer = new BimServerViewer(this.api, this.demoSettings.viewerSettings, canvas, canvas.width, canvas.height);
+            // Autoresize automatically resizes the viewer to the full width/height of the screen
+   
+   
+
+          // Load the model
+          this.bimServerViewer.loadModel(project);
+        }, function(error) {
+          console.error(error.message);
+        });
+      }, function() {
+        console.error("Error logging-in, probably wrong username/password");
+      });
+    });
+  }
+}
+
+
+new Minimal().start();
+</script>
+<?php;
+}
+ else 
+ {
+    // webgl not supported. Loads a gallery instead;
+  ?>
+<div class="fotorama"
+  data-nav=false
+  data-width="450"
+  data-height="350"
+  data-allowfullscreen="true">
+  <img src="images/1/piramide_fallback.png">
+   
+
+</div>
+<?php;
+}
+?>
+          
+ 
+	</div>
+	 
+</div>
 
 
 <!--rodapé-->

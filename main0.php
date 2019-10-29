@@ -1,6 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<?php include 'ganalytics.php' ?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Fórum</title>
 	
@@ -36,9 +39,7 @@ body {
 <body topmargin="50px" marginheight="50px">
 
 <!--header-->
-<div class="header-div">
-  <div style="align-self: center"><img src="images/platnomads.jpg" alt="Platnomads logo"> </div>
-</div>
+<?php include 'header_logo.php' ?>
 
  <!--content--> 
   
@@ -46,24 +47,99 @@ body {
   
   
   
-    <span class="versions-elements-discussion">
+    <div class="versions-elements-discussion">
        
       
    
 <!--<div class="versions-div-grid">-->
   
 <!--discussion frame. In future versions migrate the php and jscript to separate files-->
+     <script type="text/javascript">
+
+  
+
+     function insert_like_discussion(id)
+    { var id_discussion = id;
+
+      $.ajax({
+      type: 'post',
+      url: 'forum/store_rating.php',
+      data: {
+        post_like_discussion: "like", id: id,
+             },
+      success: function (id) {
+
+        $("#like"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="unlike<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000fff" onclick="insert_unlike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i>');
+        $("#dislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #C0C0C0";)></i>');   
+    }
+      });
+    }
+
+    function insert_dislike_discussion(id)
+    { var id_discussion = id;
+    $.ajax({
+      type: 'post',
+      url: 'forum/store_rating.php',
+      data: {
+        post_dislike_discussion:"dislike", id:id,
+      },
+      success: function (id) {
+        
+        $("#like"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #C0C0C0";)></i>');
+        $("#dislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="undislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000fff" onclick="insert_undislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i>');
+           
+    }
+      });
+    }
+
+     function insert_unlike_discussion(id)
+    { var id_discussion = id;
+    $.ajax({
+      type: 'post',
+      url: 'forum/store_rating.php',
+      data: {
+        post_unlike_discussion:"unlike", id:id,
+      },
+      success: function (id) {
+        
+        $("#unlike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000000" onclick="insert_like_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $like['likes']; ?>');
+        $("#dislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000000" onclick="insert_dislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $dislike['dislikes']; ?>');
+           
+    }
+      });
+    }
+
+    function insert_undislike_discussion(id)
+    { var id_discussion = id;
+    $.ajax({
+      type: 'post',
+      url: 'forum/store_rating.php',
+      data: {
+        post_undislike_discussion:"undislike", id:id,
+      },
+      success: function (id) {
+        
+        $("#undislike"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000000" onclick="insert_like_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $like['likes']; ?>');
+        $("#like"+id_discussion).replaceWith('<i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000000" onclick="insert_dislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $dislike['dislikes']; ?>');
+           
+    }
+      });
+    }
+
+  </script>
+
+
+
     <?php
       session_start();
       $user_id = $_SESSION['loggedin'];
       unset($GLOBALS['version']);
       $_SESSION['version']=0;
-      
         mysql_connect("localhost", "platnomads","@bimserver") or die(mysql_error()); //Connect to server
         mysql_select_db("platnomads") or die("Cannot connect to database"); //connect to database
      
-         //get discussion topics based on versions
-      $query = mysql_query("SELECT tag_version, id_discussion, user_name, date_time, discussion, likes, dislikes FROM discussion"); // SQL Query
+          //selects discussion topics based on versions
+      $query = mysql_query("SELECT id_discussion, user_name, relation, date_time, discussion, likes, dislikes FROM discussion WHERE tag_version = 0"); // SQL Query
         while($row = mysql_fetch_array($query))
         {
         ?>
@@ -75,11 +151,70 @@ body {
         $time = strtotime($row['date_time']);
         $date_time_discussion = strftime("%d %B, %Y", $time);
 
-        
         //shows discussions
+         echo "{$row['user_name']} | {$date_time_discussion} | {$row['relation']} | "?>  
+<?php
+         if (isset($_SESSION['loggedin'])) 
 
-        ?><a href="main<?php echo"{$row['tag_version']}"?>.php"><img src="images/versao-<?php echo"{$row['tag_version']}"?>-100x100.png" width="25px" height="25px" title="versão <?php echo "{$row['tag_version']}"?>"></a> | <?php
-         echo "{$row['user_name']} | {$date_time_discussion} | "?> <a href="discussion_comment.php?id_discussion=<?php echo "{$row['id_discussion']}" ?>"> Comentar </a> | <i class="far fa-smile"></i> 0 | <i class="far fa-frown"></i> 0 | <span class="caret"></span><br>
+           {
+
+            $countlike = mysql_query("SELECT COUNT(*) AS likes FROM reactions WHERE reaction='like' AND id_discussion=$id_discussion {$row['id_discussion']}");
+            $countdislike = mysql_query("SELECT COUNT(*) AS dislikes FROM reactions WHERE reaction='dislike' AND id_discussion=$id_discussion {$row['id_discussion']}");
+        
+        $like =mysql_fetch_assoc($countlike);
+        $dislike =mysql_fetch_assoc($countdislike);
+        
+            
+       
+
+            $testlike = mysql_query("SELECT COUNT(*) AS testlikes FROM reactions WHERE reaction='like' AND id_discussion=$id_discussion {$row['id_discussion']} AND user_name='$user_id'");
+            $testdislike = mysql_query("SELECT COUNT(*) AS testdislikes FROM reactions WHERE reaction='dislike' AND id_discussion=$id_discussion {$row['id_discussion']} AND user_name='$user_id'");
+            
+            $testlikes = mysql_fetch_assoc($testlike);
+            $testdislikes = mysql_fetch_assoc($testdislike);
+                            
+            
+
+            if ($testlikes['testlikes'] == 0 AND $testdislikes['testdislikes'] == 0)
+            {?>
+            
+             <i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000000" onclick="insert_like_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i><?php echo $like['likes']; ?>
+             <i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000000" onclick="insert_dislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $dislike['dislikes'];         
+              }
+            else
+            {if ($testlikes['testlikes'] == 1 AND $testdislikes['testdislikes'] == 0)
+              { ?>
+              <i <?php $id_likedislike=$row['id_discussion'];?> id="unlike<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #000fff" onclick="insert_unlike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i> <?php echo $like['likes']; ?>
+              <i <?php $id_likedislike=$row['id_discussion'];?> id="dislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #C0C0C0"></i><?php echo $dislike['dislikes']; ?>
+          <?php
+              }
+              else
+              { ?>
+              <i <?php $id_likedislike=$row['id_discussion'];?> id="like<?php echo $id_likedislike; ?>" class="far fa-smile" style="color: #C0C0C0"></i> <?php echo $like['likes']; ?>
+               <i <?php $id_likedislike=$row['id_discussion'];?> id="undislike<?php echo $id_likedislike; ?>" class="far fa-frown" style="color: #000fff" onclick="insert_undislike_discussion(<?php echo "$id_discussion {$row['id_discussion']}";?>)"></i><?php echo $dislike['dislikes']; ?> 
+              
+          <?php
+              }
+             }
+                    
+            }
+         
+          else 
+          {
+         $countlike = mysql_query("SELECT COUNT(*) AS likes FROM reactions WHERE reaction='like' AND id_discussion=$id_discussion {$row['id_discussion']}");
+         $countdislike = mysql_query("SELECT COUNT(*) AS dislikes FROM reactions WHERE reaction='dislike' AND id_discussion=$id_discussion {$row['id_discussion']}");
+        
+        $like =mysql_fetch_assoc($countlike);
+        $dislike =mysql_fetch_assoc($countdislike);
+
+         ?>
+         | <i class="far fa-smile" style="color: #C0C0C0"></i> <?php echo $like['likes']; ?>
+         | <i class="far fa-frown" style="color: #C0C0C0"></i> <?php echo $dislike['dislikes']; ?>
+      <?php
+           };
+         ?>
+
+       | <span class="caret"></span><br>
        <?php
         // echo " | {$row['likes']} | {$row['dislikes']}<br>";
          echo "{$row['discussion']}<br>";
@@ -96,12 +231,30 @@ body {
                $time = strtotime($comments['date_time']);
                $date_time_comments = strftime("%d %B, %Y", $time);
                //print the comments. As only the comments which id_discussion is relevant where written to the $id_discussion array, no need to use conditional statements to filter them.
-     ?><li><?php  echo "<br>{$comments['user_name']} | {$date_time_comments} " ?>| <i class="far fa-smile"></i><span id="react-count-up"> 0</span> | <i class="far fa-frown"></i><span id="react-count-down"> 0</span><br> 
+     ?><li><?php  echo "<br>{$comments['user_name']} | {$date_time_comments} " ?>|<br> 
 
     <a class="nested-commentary"><?php echo "{$comments['commentary']}<br>";?></a></li><?php
               }
               // echo {$comments['likes']} | {$comments['dislikes']}<br>";
-            ?>
+            
+              if(isset($_SESSION['loggedin']))
+              {
+               ?>
+              <form name="comments" action="forum/comment_post.php" method="POST">
+                  <span>
+                     <textarea data-ls-module="charCounter" maxlength="200" class="input-comment2" name="commentary" id="commentary" required="required" placeholder="comente nesta conversa (máximo de 200 caracteres)"></textarea>
+                     <input type="hidden" id="id_discussion" name="id_discussion" value="<?php echo "{$row['id_discussion']}";?>">
+                  <button class="button" type="submit" name="submit" id="commentary"><img src="images/arrow_right_grey.png"></button> <br/>
+                    </form>
+                    </span>
+                    <?php;
+              } else {
+
+                ?><span>
+                     <textarea data-ls-module="charCounter" maxlength="0" class="input-comment2" name="discussion" id="discussion" required="required" placeholder="registre-se para postar uma resposta!"></textarea></span>
+                <?php;
+              }
+              ?>
              </ul>
           </li>
       </ul>
@@ -120,13 +273,33 @@ for (i = 0; i < toggler.length; i++) {
     
   });
 }
-</script></span>
-   <div class="versions-elements-right">
-             
-    <form action="post.php" method="POST">
-  
-    <button class="button" type="submit" name="version" id="version" title="iniciar uma conversa" value=0></button> 
-  </div>
+</script>
+<!-- Verify if user is logged; if not, disables the posting area-->
+<?php
+if(isset($_SESSION['loggedin']))
+{
+  ?>
+<form name="discussion" action="forum/post_comment.php" method="POST">
+    <span>
+       <textarea data-ls-module="charCounter" maxlength="200" class="input-comment" name="discussion" id="discussion" required="required" placeholder="inicie aqui sua conversa (máximo de 200 caracteres)"></textarea>
+    <button class="button" type="submit" name="submit" id="discussion"><img src="images/arrow_right.png"></button> <br/>
+      </form>
+      </span>
+      <?php;
+} else {
+
+  ?><span>
+       <textarea data-ls-module="charCounter" maxlength="0" class="input-comment" name="discussion" id="discussion" required="required" placeholder="registre-se para iniciar uma conversa!"></textarea></span>
+  <?php;
+}
+?>
+
+<!--like dislike system-->
+ 
+ </div>
+ <div class="arrow-right" style="margin-top:150px">
+<a href="index.php"><img src="images/arrow_right_black.png" align="right"/></a>
+</div>
   
   
 </div>
